@@ -10,6 +10,7 @@ const signUpBtn = document.getElementById("signUpBtn");
 let loginBtn = document.querySelector("#login");
 let signOutBtn = document.querySelector("#signOutBtn");
 const loginSuccessMsg = document.querySelector("#loginSuccessMsg");
+const userLoggedStatus = document.querySelector("#userLoggedStatus");
 
 // handling signup
 if(signUpBtn){
@@ -78,7 +79,7 @@ if(signOutBtn){
     })
 }
 
-
+    
 // On Auth State Change...
 const page =  window.location.pathname;
 // if(page.includes("index.html")){
@@ -103,7 +104,6 @@ if(page.includes("index.html")){
             window.location.replace("login.html");
         }
         else{
-            const userLoggedStatus = document.querySelector("#userLoggedStatus");
             if(userLoggedStatus){
                 userLoggedStatus.textContent = user.email;
             }
