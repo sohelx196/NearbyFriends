@@ -12,11 +12,13 @@ const saveBtn = document.querySelector("#saveProfileBtn");
 
 
 // check for user is logged in or not..
-const currentUser = null;
+let currentUser = null;
+saveBtn.disabled = true;
 onAuthStateChanged(auth , async (user)=>{
     if(!user) return;
     else{
         currentUser = user;
+        saveBtn.disabled = false;
     }
 });
 
@@ -36,7 +38,7 @@ saveBtn.addEventListener("click" , async ()=>{
         name : name,
         age : Number(age),
         about : about,  
-        // email : currentUser.email,
+        email : currentUser.email,
     }
 
 
