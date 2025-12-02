@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+
+<h2>Complete Your Profile</h2>
+
+<div class="profile-container">
+
+    <label>Your Name</label>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+
+    <label>Your Age</label>
+    <input type="number" id="ageInput" placeholder="Enter your age">
+
+    <label>About Yourself</label>
+    <textarea id="aboutInput" placeholder="Something about you..."></textarea>
+
+    <label>Your Interests</label>
+    <input type="text" id="interestsInput" placeholder="e.g. music, football, coding">
+
+    <button id="saveProfileBtn">Save Profile</button>
+
+</div>
+
+<script type="module" src="./server/profile.js"></script>
+<script type="module" src="./server/firebase.js"></script>
+
+</body>
+</html>
