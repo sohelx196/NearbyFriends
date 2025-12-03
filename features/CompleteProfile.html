@@ -8,9 +8,13 @@
 </head>
 <body>
 
-<h2>Complete Your Profile</h2>
+<div id="loadingProfile">
+    <h1>Loading Your Profile...</h1>
+</div>
 
-<div class="profile-container">
+    
+    <div class="profile-container" id="content">
+    <h2>Complete Your Profile</h2>
 
     <label>Your Name</label>
     <input type="text" id="nameInput" placeholder="Enter your name">
@@ -28,8 +32,8 @@
 
 </div>
 
-<script type="module" src="../server/completeProfile.js"></script>
 <script type="module" src="../server/firebase.js"></script>
+<script type="module" src="../server/completeProfile.js"></script>
 
  </body>
 </html>

@@ -12,6 +12,7 @@ h2 {
 }
 
 .profile-container {
+    opacity:0;
     width: 90%;
     max-width: 400px;
     background: white;
@@ -57,4 +58,15 @@ h2 {
 
 #saveProfileBtn:hover {
     background: #0056b3;
+}
+
+
+
+#loadingProfile{
+    display: flex;
+    justify-content: center ;
+}
+
+.profile-container.show{
+    opacity: 1;
 }

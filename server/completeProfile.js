@@ -8,19 +8,28 @@ const ageInput = document.querySelector("#ageInput");
 const aboutInput = document.querySelector("#aboutInput");
 
 const saveBtn = document.querySelector("#saveProfileBtn");
+const loadingProfile = document.querySelector("#loadingProfile");
+const content = document.querySelector("#content");
  
 
 
 // check for user is logged in or not..
 let currentUser = null;
-saveBtn.disabled = true;
-onAuthStateChanged(auth , async (user)=>{
-    if(!user) return;
-    else{
-        currentUser = user;
-        saveBtn.disabled = false;
-    }
-});
+
+    onAuthStateChanged(auth , async (user)=>{
+        if(user){
+           currentUser = user;
+           loadingProfile.style.display = "none";
+           content.classList.add("show");
+        }
+        else{
+            alert("Login First..")
+            window.location.replace("../login.html")
+        }
+    });
+
+
+
 
 
 saveBtn.addEventListener("click" , async ()=>{

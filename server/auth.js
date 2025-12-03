@@ -24,10 +24,23 @@ if(signUpBtn){
 
         try{
                 await createUserWithEmailAndPassword(auth , email , password);
-                await signOut(auth)
                 alert("User Registered Successully!!")
                 window.location.href = "../features/CompleteProfile.html"
         }
+
+        // code for backup None.
+        //      try{
+        //         await createUserWithEmailAndPassword(auth , email , password);
+        //         // await signOut(auth)
+        //         alert("User Registered Successully!!")
+
+        //         onAuthStateChanged(auth,(user)=>{
+        //            if(user){
+        //                window.location.href = "../features/CompleteProfile.html"
+        //            }
+        //         })
+        // }
+
         catch(error){
             const signupStatus = document.querySelector("#signupStatus");
             signupStatus.textContent = error.message;
