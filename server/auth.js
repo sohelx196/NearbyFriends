@@ -10,7 +10,7 @@ const signUpBtn = document.getElementById("signUpBtn");
 let loginBtn = document.querySelector("#login");
 let signOutBtn = document.querySelector("#signOutBtn");
 const loginSuccessMsg = document.querySelector("#loginSuccessMsg");
-const userLoggedStatus = document.querySelector("#userLoggedStatus");
+// const userLoggedStatus = document.querySelector("#userLoggedStatus");
 
 // handling signup
 if(signUpBtn){
@@ -63,7 +63,7 @@ if(loginBtn){
         try{    
             await signInWithEmailAndPassword(auth , email , password);
             // alert("Login Succcessfullu!");
-            loginSuccessMsg.textContent = "Login Successfully!!"
+            // loginSuccessMsg.textContent = "Login Successfully!!"
             setTimeout(() => {                
                 window.location.href = "index.html";
             }, 2000);
@@ -116,11 +116,11 @@ if(page.includes("index.html")){
         if(!user){
             window.location.replace("login.html");
         }
-        else{
-            if(userLoggedStatus){
-                userLoggedStatus.textContent = user.email;
-            }
-        }
+        // else{
+        //     if(userLoggedStatus){
+        //         userLoggedStatus.textContent = user.email;
+        //     }
+        // }
     })
 }
 

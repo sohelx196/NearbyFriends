@@ -37,7 +37,6 @@ let currentUser = null;
               else{
                 alert("No user Data Found!!")
               }
-
         }
         else{
             alert("Login First..")
