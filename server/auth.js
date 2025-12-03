@@ -108,7 +108,7 @@ const page =  window.location.pathname;
 //     if(!user){
 //         window.location.replace("login.html");   
 //     }
-// })
+// })  
 
 
 if(page.includes("index.html")){

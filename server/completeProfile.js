@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { auth , db} from "./firebase.js";
-import { doc,  setDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { doc,  setDoc , getDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 
 const nameInput = document.querySelector("#nameInput");
@@ -16,22 +16,37 @@ const content = document.querySelector("#content");
 // check for user is logged in or not..
 let currentUser = null;
 
-    onAuthStateChanged(auth , async (user)=>{
+ onAuthStateChanged(auth , async (user)=>{
         if(user){
            currentUser = user;
            loadingProfile.style.display = "none";
            content.classList.add("show");
+
+           // reading user for showing to the form..
+              let docRef = doc(db  , "users" , currentUser.uid);
+              let userDataStatus = await  getDoc(docRef);
+
+              if(userDataStatus.exists()){
+                   const data = userDataStatus.data();
+                   
+                   // setting data into input fields
+                   nameInput.value = data.name || "";
+                   ageInput.value  = data.age || "";
+                   aboutInput.value = data.about || "";
+              }
+              else{
+                alert("No user Data Found!!")
+              }
+
         }
         else{
             alert("Login First..")
             window.location.replace("../login.html")
         }
-    });
+ });
 
 
-
-
-
+ // Saving data after submit...
 saveBtn.addEventListener("click" , async ()=>{
 
   if(!currentUser){
