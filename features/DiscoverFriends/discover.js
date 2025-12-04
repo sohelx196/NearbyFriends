@@ -1,0 +1,1 @@
+import { initAuth } from "../../server/authManager";

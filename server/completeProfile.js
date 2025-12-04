@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { auth , db} from "./firebase.js";
-import { doc,  setDoc , getDoc , updateDoc} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { doc,  setDoc , getDoc , updateDoc , serverTimestamp} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 
 const nameInput = document.querySelector("#nameInput");
@@ -34,9 +34,23 @@ let currentUser = null;
                    ageInput.value  = data.age || "";
                    aboutInput.value = data.about || "";
               }
-              else{
-                alert("No user Data Found!!")
-              }
+             
+             // mark user as online...
+             await updateDoc(docRef , {
+              online  : true,
+              lastActive : serverTimestamp(),
+             });  
+
+             // mark user offline...
+             window.addEventListener("beforeunload" , async ()=>{
+              await updateDoc(docRef , {
+                online : false,
+                lastActive : serverTimestamp(),
+              })
+             })
+
+
+
         }
         else{
             alert("Login First..")
@@ -57,13 +71,38 @@ saveBtn.addEventListener("click" , async ()=>{
     const age = ageInput.value.trim();
     const about = aboutInput.value.trim();
 
-    const profileData = {
+  // before we submit, we need to take the users location..so we did below
+
+  let location = null;
+  try{
+    const position =  await new Promise((resolve , reject) =>{
+      navigator.geolocation.getCurrentPosition(resolve , reject);
+    });
+    
+    // updating lat and lon into location
+    location = {
+      lat : position.coords.latitude,
+      lon : position.coords.longitude,
+    }
+  }
+  catch(error){
+    console.warn("Location access denied or unavailable");    
+  }
+
+
+
+    let profileData = {
         name : name,
         age : Number(age),
         about : about,  
         email : currentUser.email,
-        
+        online: true,
+        lastActive: new Date(),
     }
+    // this checks if the location exists (not undefined or null) then add into users document otherwise dont add..
+    if (location) {
+       profileData.location = location;
+     }
 
 
     try{

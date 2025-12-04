@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { doc, getDoc , updateDoc , serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { auth, db } from "./firebase.js";
 
 
@@ -11,14 +11,15 @@ export function initAuth({requireLogin = false} = {}){
 
     return new Promise((resolve , reject)=>{
         onAuthStateChanged(auth ,  async (user)=>{
+    
             if(user){
                 currentUser  = user;
                 
                 // fetch profile data from firestore..
+                let docRef = doc(db , "users" , user.uid);
                 try{
-                   let docRef = doc(db , "users" , user.uid);
                    let userDataStatus = await getDoc(docRef);
-
+                   
                    if(userDataStatus.exists()){
                       currentProfile = userDataStatus.data();
                    }
@@ -32,6 +33,22 @@ export function initAuth({requireLogin = false} = {}){
                     alert("Error while fetching user profile..");
                     resolve({user : currentUser , profile : null});
                 }
+
+
+           // mark user as online...
+             await updateDoc(docRef , {
+              online  : true,
+              lastActive : serverTimestamp(),
+             });  
+
+             // mark user offline...
+             window.addEventListener("beforeunload" , async ()=>{
+              await updateDoc(docRef , {
+                online : false,
+                lastActive : serverTimestamp(),
+              })
+             })
+
             }
             else{
                 currentUser = null; 
