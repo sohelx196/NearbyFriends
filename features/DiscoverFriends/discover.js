@@ -1,6 +1,6 @@
-import { initAuth } from "../../server/authManager";
 import { db } from "../../server/firebase";
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { initAuth } from "../../server/authManager";
 
 
 let friendsList = document.querySelector("#friendsList");
@@ -26,7 +26,7 @@ function getDistance(lat1, lon1, lat2, lon2) {
 async function loadNearbyFriends() {
     
   let rawUser = await getDocs(collection(db , "users"));
-  const onlineFriends = []
+  let onlineFriends = []
 
     for(const doc of rawUser.docs){
          let friend = doc.data();
@@ -44,7 +44,7 @@ async function loadNearbyFriends() {
             );
 
             // distace is 1m or less than only pushed..
-            if(distance <= 1){
+            if(distance <= 25){
                 onlineFriends.push({...friend , distance})
             }
          }
