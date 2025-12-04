@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded" , async ()=>{
 
     let userLoggedStatus = document.querySelector("#userLoggedStatus");
     
-    let { profile} = await initAuth({ requireLogin: true });    // destructured as needed
+    let {user, profile} = await initAuth({ requireLogin: true });    // destructured as needed
 
 
     // showing welcome user..

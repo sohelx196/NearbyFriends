@@ -1,5 +1,5 @@
 import { db } from "../../server/firebase";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager";
 
 
@@ -25,10 +25,14 @@ function getDistance(lat1, lon1, lat2, lon2) {
 
 async function loadNearbyFriends() {
     
-  let rawUser = await getDocs(collection(db , "users"));
-  let onlineFriends = []
+  // let rawUser = await getDocs(collection(db , "users"));
+  let rawUser = collection(db , "users");
+  
+onSnapshot(rawUser, (snapshot) => {
 
-    for(const doc of rawUser.docs){
+  let onlineFriends = []
+  
+    for(const doc of snapshot.docs){
          let friend = doc.data();
 
          if(doc.id == user.uid) continue;
@@ -50,7 +54,7 @@ async function loadNearbyFriends() {
          }
     }
     renderFriends(onlineFriends);
-
+  }); 
 }
 
 
