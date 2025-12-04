@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { auth , db} from "./firebase.js";
-import { doc,  setDoc , getDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { doc,  setDoc , getDoc , updateDoc} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 
 const nameInput = document.querySelector("#nameInput");
@@ -62,6 +62,7 @@ saveBtn.addEventListener("click" , async ()=>{
         age : Number(age),
         about : about,  
         email : currentUser.email,
+        
     }
 
 

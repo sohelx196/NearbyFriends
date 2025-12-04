@@ -121,6 +121,7 @@ if(page.includes("index.html")){
         //         userLoggedStatus.textContent = user.email;
         //     }
         // }
+        
     })
 }
 
