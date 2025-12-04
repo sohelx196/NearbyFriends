@@ -39,7 +39,7 @@ export function initAuth({requireLogin = false} = {}){
 
 
            // mark user as online...
-           await set(userStatusRef , {online : true});            
+           await set(userStatusRef , {online : true , lastActive: Date.now() });            
 
              await updateDoc(docRef , {
               online  : true,
@@ -47,12 +47,13 @@ export function initAuth({requireLogin = false} = {}){
              });  
 
              // mark user offline...
-            onDisconnect(userStatusRef).set({online: false});
+            onDisconnect(userStatusRef).set({online: false ,lastActive: Date.now() });
             
             // sync the rtdb with firestore...   
             onValue(userStatusRef , async (snapshot)=>{
-               let isOnline  = snapshot.val()?.online ?? false;
-               await updateDoc(docRef , {online : isOnline});
+               const data = snapshot.val();
+               if(!data) return;
+               await updateDoc(docRef , {online : data.online ,  lastActive: serverTimestamp()});
             })
 
 
@@ -63,7 +64,7 @@ export function initAuth({requireLogin = false} = {}){
               })
              })
 
-            }
+        }
             else{
                 currentUser = null; 
                 currentProfile  = null;
