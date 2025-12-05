@@ -40,6 +40,7 @@ onSnapshot(rawUser, (snapshot) => {
          if(doc.id == user.uid) continue;
 
 
+
          // getting distance..
          if(friend.online && friend.location && profile?.location){          
 

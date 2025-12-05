@@ -8,6 +8,7 @@
     apiKey: "AIzaSyDMsc08ftkf9cINLLcUjjFfTXrvf7GFV6c",
     authDomain: "nearbyfriends-cfd1a.firebaseapp.com",
     projectId: "nearbyfriends-cfd1a",
+    databaseURL : "https://nearbyfriends-cfd1a-default-rtdb.firebaseio.com/",
     storageBucket: "nearbyfriends-cfd1a.firebasestorage.app",
     messagingSenderId: "579406680264",
     appId: "1:579406680264:web:0d42b188e55ae39c1a55fd",
