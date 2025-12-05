@@ -17,6 +17,7 @@ export function initAuth({requireLogin = false} = {}){
                 
                 // fetch profile data from firestore..
                 let userStatusRef = ref(rtdb , "/status/" + user.uid);
+
                 let docRef = doc(db , "users" , user.uid);
 
                 try{
@@ -37,7 +38,7 @@ export function initAuth({requireLogin = false} = {}){
                 }
 
 
-
+                
            // mark user as online...
            await set(userStatusRef , {online : true , lastActive: Date.now() });            
 

@@ -1,7 +1,11 @@
-import { db } from "../../server/firebase.js";
+import {db , rtdb } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager.js";
   
+
+alert("Loaded firebase from: " + import.meta.url);
+alert("Connected to: " + (rtdb.app.options.databaseURL || "No RTDB found"));
+
 
 
 let friendsList = document.querySelector("#friendsList");
@@ -13,7 +17,7 @@ const { user, profile } = await initAuth({ requireLogin: true });
 function getDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth radius km
   const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180; 
   const a =
     Math.sin(dLat / 2) ** 2 +
     Math.cos(lat1 * Math.PI / 180) *
@@ -38,7 +42,6 @@ onSnapshot(rawUser, (snapshot) => {
          let friend = doc.data();
 
          if(doc.id == user.uid) continue;
-
 
 
          // getting distance..
