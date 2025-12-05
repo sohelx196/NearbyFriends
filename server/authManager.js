@@ -54,6 +54,7 @@ export function initAuth({requireLogin = false} = {}){
             onValue(userStatusRef , async (snapshot)=>{
                const data = snapshot.val();
                if(!data) return;
+               alert("onValue triggered:" + user.uid, data);      
                await updateDoc(docRef , {online : data.online ,  lastActive: serverTimestamp()});
             })
 
