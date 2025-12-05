@@ -1,6 +1,7 @@
-import { db } from "../../server/firebase";
+import { db } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-import { initAuth } from "../../server/authManager";
+import { initAuth } from "../../server/authManager.js";
+  
 
 
 let friendsList = document.querySelector("#friendsList");
@@ -31,14 +32,17 @@ async function loadNearbyFriends() {
 onSnapshot(rawUser, (snapshot) => {
 
   let onlineFriends = []
-  
+ 
+
     for(const doc of snapshot.docs){
          let friend = doc.data();
 
          if(doc.id == user.uid) continue;
 
+
          // getting distance..
-         if(friend.online && friend.location && profile?.location){
+         if(friend.online && friend.location && profile?.location){          
+
             const distance = getDistance(
                 // pass user and friend lat and long..
                 profile.location.lat,
@@ -46,8 +50,8 @@ onSnapshot(rawUser, (snapshot) => {
                 friend.location.lat,
                 friend.location.lon,
             );
-
-            // distace is 1m or less than only pushed..
+          
+            // distace is 25km or less than only pushed..
             if(distance <= 25){
                 onlineFriends.push({...friend , distance})
             }

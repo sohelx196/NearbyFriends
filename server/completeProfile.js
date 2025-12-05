@@ -22,7 +22,7 @@ let currentUser = null;
            loadingProfile.style.display = "none";
            content.classList.add("show");
 
-           // reading user for showing to the form..
+           // reading user for showing to the form..  
               let docRef = doc(db  , "users" , currentUser.uid);
               let userDataStatus = await  getDoc(docRef);
 
