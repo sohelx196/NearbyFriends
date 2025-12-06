@@ -2,10 +2,6 @@ import {db , rtdb } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager.js";
 
-import app from "../../server/firebase.js";
-alert("🔥 Firebase project (final): " + app.options.projectId);
-
-
 
 let friendsList = document.querySelector("#friendsList");
 
@@ -42,11 +38,6 @@ onSnapshot(rawUser, (snapshot) => {
 
          if(doc.id == user.uid) continue;
 
-
-         console.log("📍 Friend:", friend.name, "Online:", friend.online, "Location:", friend.location);
-         console.log("📍 Profile location:", profile?.location);
-
-
          // getting distance..
          if(friend.online && friend.location && profile?.location){          
 
@@ -57,7 +48,7 @@ onSnapshot(rawUser, (snapshot) => {
                 friend.location.lat,
                 friend.location.lon,
               );
-          console.log(`📏 Distance between ${profile.name} and ${friend.name}: ${distance.toFixed(2)} km`);
+          
             // distace is 25km or less than only pushed..
             if(distance <= 1000){  
                 onlineFriends.push({...friend , distance})
