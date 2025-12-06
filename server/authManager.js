@@ -56,7 +56,7 @@ export function initAuth({requireLogin = false} = {}){
                if(!data) return;
                 try{
                     await updateDoc(docRef , {online : data.online ,  lastActive: serverTimestamp()});
-                    console.log("✅ Firestore updated successfully for:", user.uid);
+                    alert("✅ Firestore updated successfully for:" + user.uid);
                 }
                 catch(e){
                     alert("firestore update failed" + e)
