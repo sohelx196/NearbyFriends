@@ -1,31 +1,36 @@
-
-  // import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  // import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-  // import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-  // import { getDatabase } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
-
-  import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
-
+  
   const firebaseConfig = {
-    apiKey: "AIzaSyDMsc08ftkf9cINLLcUjjFfTXrvf7GFV6c",
-    authDomain: "nearbyfriends-cfd1a.firebaseapp.com",
-    projectId: "nearbyfriends-cfd1a",
-    databaseURL : "https://nearbyfriends-cfd1a-default-rtdb.firebaseio.com/",
-    storageBucket: "nearbyfriends-cfd1a.firebasestorage.app",
-    messagingSenderId: "579406680264",
-    appId: "1:579406680264:web:0d42b188e55ae39c1a55fd",
-    measurementId: "G-3WSNBR70JS"
+    apiKey: "AIzaSyA4RJagyni9VpSnRtmxdGgC0yaWfM-k4to",
+    authDomain: "nearbyfriends-6fbe2.firebaseapp.com",
+    projectId: "nearbyfriends-6fbe2",
+    storageBucket: "nearbyfriends-6fbe2.firebasestorage.app",
+    messagingSenderId: "807699646600",
+    appId: "1:807699646600:web:7b6f162939053bf2a4773d",
+    measurementId: "G-BBC5HJ9FJR",
+    databaseURL : "https://nearbyfriends-6fbe2-default-rtdb.firebaseio.com/"
   };
 
 
   // Initialize Firebase
   // const app = initializeApp(firebaseConfig);
-  const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+let app;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+  console.log("✅ Firebase initialized once:", app.options.projectId);
+} else {
+  app = getApp();
+  console.log("♻️ Firebase reused:", app.options.projectId);
+}
+
+
+
   export const auth = getAuth(app);
   export const db = getFirestore(app);
   export const rtdb = getDatabase(app); // realtime databasee
 
+export default app;

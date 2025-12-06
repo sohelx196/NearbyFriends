@@ -2,12 +2,8 @@ import {db , rtdb } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager.js";
 
-  import { getApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-const app = getApp();
-alert("🔥 Firebase project:", app.options.projectId);
-
-alert("Loaded firebase from: " + import.meta.url);
-alert("Connected to: " + (rtdb.app.options.databaseURL || "No RTDB found"));
+import app from "../../server/firebase.js";
+alert("🔥 Firebase project (final): " + app.options.projectId);
 
 
 
