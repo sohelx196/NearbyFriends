@@ -76,7 +76,11 @@ saveBtn.addEventListener("click" , async ()=>{
   let location = null;
   try{
     const position =  await new Promise((resolve , reject) =>{
-      navigator.geolocation.getCurrentPosition(resolve , reject);
+      navigator.geolocation.getCurrentPosition(resolve , reject , {
+         enableHighAccuracy: true,
+         timeout: 10000,
+         maximumAge: 0
+      });
     });
     
     // updating lat and lon into location

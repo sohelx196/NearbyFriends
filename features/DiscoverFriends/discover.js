@@ -59,10 +59,10 @@ onSnapshot(rawUser, (snapshot) => {
             );
           console.log(`📏 Distance between ${profile.name} and ${friend.name}: ${distance.toFixed(2)} km`);
             // distace is 25km or less than only pushed..
-            // if(distance <= 25){
-            //     onlineFriends.push({...friend , distance})
-            // }
-             onlineFriends.push({...friend , distance})
+            if(distance <= 200){
+                onlineFriends.push({...friend , distance})
+            }
+            //  onlineFriends.push({...friend , distance})
          }
     }
     renderFriends(onlineFriends);
