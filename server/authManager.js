@@ -54,8 +54,13 @@ export function initAuth({requireLogin = false} = {}){
             onValue(userStatusRef , async (snapshot)=>{
                const data = snapshot.val();
                if(!data) return;
-               alert("onValue triggered:" + user.uid, data);      
-               await updateDoc(docRef , {online : data.online ,  lastActive: serverTimestamp()});
+                try{
+                    await updateDoc(docRef , {online : data.online ,  lastActive: serverTimestamp()});
+                    console.log("✅ Firestore updated successfully for:", user.uid);
+                }
+                catch(e){
+                    alert("firestore update failed" + e)
+                }
             })
 
 
