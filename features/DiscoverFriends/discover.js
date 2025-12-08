@@ -66,21 +66,22 @@ onSnapshot(rawUser, (snapshot) => {
 
 
 
-function renderFriends(friends){
+function renderFriends(friends){ 
 
     friendsList.innerHTML = "";
     
     if(!friends.length){
-        friendsList.innerHTML = "<p>No online friends nearby 😢</p>";
-        return
+        friendsList.innerHTML = "<h2>Loading available users..</h2>";
+        
+        return;
     }
 
     friends.forEach((f) => {
      const li = document.createElement("li");
 
-     li.innerHTML = `<strong>${f.name}</strong> - ${f.age} year
-     <small>${f.distance.toFixed(2)} km away</small>`;
-
+     li.innerHTML = `<strong>${f.name}</strong> - ${f.age} year old
+     (<small>${f.distance.toFixed(2)} km away</small>)`;
+    li.classList.add("friendList");
      friendsList.appendChild(li);
     });
 }
