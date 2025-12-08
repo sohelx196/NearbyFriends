@@ -74,7 +74,7 @@ saveBtn.addEventListener("click" , async ()=>{
   let location = null;
   try{
     const position =  await new Promise((resolve , reject) =>{
-      navigator.geolocation.getCurrentPosition(resolve , reject);
+      navigator.geolocation.getCurrentPosition(resolve , reject );
     });
     
     // updating lat and lon into location
@@ -86,7 +86,6 @@ saveBtn.addEventListener("click" , async ()=>{
   catch(error){
     console.warn("Location access denied or unavailable");    
   }
-
 
 
     let profileData = {

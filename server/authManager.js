@@ -11,7 +11,7 @@ export function initAuth({requireLogin = false} = {}){
 
     return new Promise((resolve , reject)=>{
         onAuthStateChanged(auth ,  async (user)=>{
-    
+            
             if(user){
                 currentUser  = user;
                 
@@ -56,7 +56,6 @@ export function initAuth({requireLogin = false} = {}){
                if(!data) return;
                 try{
                     await updateDoc(docRef , {online : data.online ,  lastActive: serverTimestamp()});
-                    alert("✅ Firestore updated successfully for:" + user.uid);
                 }
                 catch(e){
                     alert("firestore update failed" + e)
@@ -84,5 +83,5 @@ export function initAuth({requireLogin = false} = {}){
                 resolve({user : null , profile : null})
             }
         })
-    })  
-}
+    })
+}     

@@ -21,10 +21,8 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-
 let app;
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
-  console.log("✅ Firebase initialized once:", app.options.projectId);
 } else {
   app = getApp();
-  console.log("♻️ Firebase reused:", app.options.projectId);
 }
 
 

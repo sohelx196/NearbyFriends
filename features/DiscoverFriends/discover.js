@@ -1,13 +1,17 @@
 import {db , rtdb } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager.js";
-
+import { autoUpdateLocation } from "../../utils/locationUpadater.js";
 
 let friendsList = document.querySelector("#friendsList");
 
 const { user, profile } = await initAuth({ requireLogin: true });
    //{currentuser,currentUserProfile}
 
+  // updating location every 2 minute..
+   autoUpdateLocation(user , 2); 
+
+   
 // compute distance in km between two coordinates (Haversine formula)
 function getDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth radius km
@@ -49,7 +53,7 @@ onSnapshot(rawUser, (snapshot) => {
                 friend.location.lon,
               );
           
-            // distace is 25km or less than only pushed..
+        
             if(distance <= 1000){  
                 onlineFriends.push({...friend , distance})
             }
