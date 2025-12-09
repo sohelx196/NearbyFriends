@@ -7,3 +7,10 @@
     background-color: rgb(13, 252, 41);
     cursor: pointer;
 }
+
+.chatBtn{
+    border: 2px  solid black ;
+    border-radius: 20px;
+    background-color: rgb(190, 213, 232);
+
+}
