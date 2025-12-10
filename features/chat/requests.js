@@ -5,5 +5,5 @@ import { ref, set, onChildAdded, remove, update } from "https://www.gstatic.com/
 
 
 export function sendFriendRequest(){
-    
+     
 }
