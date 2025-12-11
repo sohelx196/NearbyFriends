@@ -2,6 +2,7 @@ import {db , rtdb } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager.js";
 import { autoUpdateLocation } from "../../utils/locationUpadater.js";
+import { acceptChatRequest, listenChatRequest, sendChatRequest } from "../chat/requests.js";
 
 let friendsList = document.querySelector("#friendsList");
 
@@ -10,6 +11,12 @@ const { user, profile } = await initAuth({ requireLogin: true });
 
   // updating location every 2 minute..
    autoUpdateLocation(user , 2); 
+
+
+   // chat request listening..
+   listenChatRequest(user)
+
+
 
    
 // compute distance in km between two coordinates (Haversine formula)
@@ -38,8 +45,7 @@ onSnapshot(rawUser, (snapshot) => {
  
 
     for(const doc of snapshot.docs){
-         let friend = doc.data();
-
+         let friend = {uid : doc.id , ...doc.data()};
          if(doc.id == user.uid) continue;
 
          // getting distance..
@@ -85,7 +91,9 @@ function renderFriends(friends){
     li.classList.add("friendList");
      friendsList.appendChild(li);
 
-     li.querySelector(".")
+     li.querySelector(".chatBtn").addEventListener("click" , async (e)=>{
+            await sendChatRequest( f.uid , f.name , {uid : user.uid , name : profile.name} )
+     })
 
     });
 }
