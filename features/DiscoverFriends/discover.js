@@ -2,7 +2,7 @@ import {db , rtdb } from "../../server/firebase.js";
 import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { initAuth } from "../../server/authManager.js";
 import { autoUpdateLocation } from "../../utils/locationUpadater.js";
-import { acceptChatRequest, listenChatRequest, sendChatRequest } from "../chat/requests.js";
+import {  listenChatRequest, sendChatRequest } from "../chat/requests.js";
 
 let friendsList = document.querySelector("#friendsList");
 
@@ -12,9 +12,9 @@ const { user, profile } = await initAuth({ requireLogin: true });
   // updating location every 2 minute..
    autoUpdateLocation(user , 2); 
 
-
+                    
    // chat request listening..
-   listenChatRequest(user)
+   listenChatRequest(user);
 
 
 

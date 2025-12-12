@@ -30,7 +30,10 @@ onChildAdded(userReqRef , async (snapshot)=>{
       let accept = confirm(`Chat request from ${request.name}. Accept?`);
       if(accept){
          await update(reqRef , {status : "accepted"});
-      }      
+      }
+      else{
+         clearChatRequest(user.uid , key)
+      }    
    }
 });
 
@@ -61,12 +64,12 @@ export async function clearChatRequest(currentUserId,fromUserId){
 }
 
 
-export async function acceptChatRequest(currentUserId  , fromUserId) {
-   const reqRef = ref(rtdb , `requests/${currentUserId}/${fromUserId}`);
-   await update(reqRef , {status : "accepted"});
+// export async function acceptChatRequest(currentUserId  , fromUserId) {
+//    const reqRef = ref(rtdb , `requests/${currentUserId}/${fromUserId}`);
+//    await update(reqRef , {status : "accepted"});
 
-   const chatRoomId = [currentUserId , fromUserId].sort().join("_");
-   return chatRoomId;
-};
+//    const chatRoomId = [currentUserId , fromUserId].sort().join("_");
+//    return chatRoomId;
+// };
 
 
