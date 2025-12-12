@@ -2,6 +2,7 @@
 
 import { rtdb } from "../../server/firebase.js";
 import { ref, set, onChildAdded, remove, update , onChildChanged} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { showReqPopup } from "../../utils/showRequestMsg.js";
 
 
 export async function sendChatRequest(recieverId , recieverName , senderId){
@@ -19,7 +20,7 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
 
 export async function listenChatRequest(user){
 
-const userReqRef = ref(rtdb , `requests/${user.uid}`);
+const userReqRef = ref(rtdb  , `requests/${user.uid}`);
 
 onChildAdded(userReqRef , async (snapshot)=>{
    const request = snapshot.val();
@@ -27,13 +28,13 @@ onChildAdded(userReqRef , async (snapshot)=>{
    const reqRef = ref(rtdb, `requests/${user.uid}/${key}`);
 
    if(request.status === "pending"){
-      let accept = confirm(`Chat request from ${request.name}. Accept?`);
+      let accept = await showReqPopup(`Chat request from ${request.name}. Accept?`);
       if(accept){
          await update(reqRef , {status : "accepted"});
       }
       else{
          clearChatRequest(user.uid , key)
-      }    
+      }
    }
 });
 
@@ -42,7 +43,7 @@ onChildChanged(userReqRef , async (snapshot)=>{
    const key = snapshot.key;
 
    if(request.status === "accepted"){
-      alert(`${request.name} accepted your request`);
+      // alert(`${request.name} accepted your request`);
       window.location.href = `../chat/chat.html?room=${makeroomId(user.uid , key)}`
    }
    else{
