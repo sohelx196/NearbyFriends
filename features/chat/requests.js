@@ -54,7 +54,7 @@ onChildChanged(userReqRef , async (snapshot)=>{
 
    if(request.status === "accepted"){
       // alert(`${request.name} accepted your request`);
-      window.location.href = `../chat/chat.html?room=${makeroomId(user.uid , key)}`
+      window.location.href = `/features/chat/chat.html?room=${makeroomId(user.uid , key)}`
    }
    else{
       clearChatRequest(user.uid , key);

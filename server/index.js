@@ -1,12 +1,12 @@
 import { initAuth  } from "./authManager.js";
-
+import { listenChatRequest } from "../features/chat/requests.js";
 
 document.addEventListener("DOMContentLoaded" , async ()=>{
 
     let userLoggedStatus = document.querySelector("#userLoggedStatus");
     
     let {user, profile} = await initAuth({ requireLogin: true });    // destructured as needed
-
+     listenChatRequest(user);
 
     // showing welcome user..
     if(profile){
