@@ -1,7 +1,7 @@
 // handle sending and recieving request..
 
 import { rtdb } from "../../server/firebase.js";
-import { ref, set, onChildAdded, remove, update , onChildChanged} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { ref, set, onChildAdded, remove, update , onChildChanged , onValue} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 import { showReqPopup } from "../../utils/showRequestMsg.js";
 
 
@@ -16,6 +16,16 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
      });
 
      alert(`Chat request send to ${recieverName}`);
+
+   // listening to the reciever response..
+   onValue(reqRef , (snapshot)=>{
+      const data = snapshot.val();
+      if(data && data.status === "accepted"){
+         alert(`${recieverName} accepted you request`)
+         indow.location.href = `../chat.html?room=${makeroomId(recieverId, senderId)}`;
+      }
+   })
+
 }
 
 export async function listenChatRequest(user){
@@ -49,7 +59,7 @@ onChildChanged(userReqRef , async (snapshot)=>{
    else{
       clearChatRequest(user.uid , key);
    }
-})
+});
 
 };
 
@@ -72,5 +82,3 @@ export async function clearChatRequest(currentUserId,fromUserId){
 //    const chatRoomId = [currentUserId , fromUserId].sort().join("_");
 //    return chatRoomId;
 // };
-
-
