@@ -17,11 +17,9 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
      alert(`Chat request send to ${recieverName}`);
 }
 
-
 export async function listenChatRequest(user){
 
 const userReqRef = ref(rtdb , `requests/${user.uid}`);
-
 
 onChildAdded(userReqRef , async (snapshot)=>{
    const request = snapshot.val();
@@ -32,7 +30,7 @@ onChildAdded(userReqRef , async (snapshot)=>{
       let accept = confirm(`Chat request from ${request.name}. Accept?`);
       if(accept){
          await update(reqRef , {status : "accepted"});
-     }      
+      }      
    }
 });
 
@@ -44,12 +42,22 @@ onChildChanged(userReqRef , async (snapshot)=>{
       alert(`${request.name} accepted your request`);
       window.location.href = `../chat/chat.html?room=${makeroomId(user.uid , key)}`
    }
+   else{
+      clearChatRequest(user.uid , key);
+   }
 })
 
 };
 
+
 function makeroomId(uid1 , uid2){
    return [uid1 , uid2].sort().join("_");
+}
+
+
+export async function clearChatRequest(currentUserId,fromUserId){
+  const reqRef = ref(rtdb , `requests/${currentUserId}/${fromUserId}`);
+  await remove(reqRef);
 }
 
 
