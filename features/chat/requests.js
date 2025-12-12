@@ -18,11 +18,11 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
      alert(`Chat request send to ${recieverName}`);
 
    // listening to the reciever response..
-   onValue(reqRef , (snapshot)=>{
+    onValue(reqRef , (snapshot)=>{
       const data = snapshot.val();
       if(data && data.status === "accepted"){
          alert(`${recieverName} accepted you request`)
-         indow.location.href = `../chat.html?room=${makeroomId(recieverId, senderId)}`;
+         window.location.href = `../chat/chat.html?room=${makeroomId(recieverId, senderId)}`;
       }
    })
 
