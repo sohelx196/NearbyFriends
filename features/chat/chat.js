@@ -15,7 +15,7 @@ async function initChat() {
 
   const {user,  profile} = await initAuth({requireLogin : true});
   document.getElementById("header").innerText = `Chatting as ${profile.name}`;
- 
+  
   listenMessages(roomId , user);
   setupSendMessage(roomId ,user);
 
@@ -23,7 +23,8 @@ async function initChat() {
 
 
 function listenMessages(roomId , user){
-    const msgRef = ref(rtdb , `chats/${roomId}/messages`);
+
+  const msgRef = ref(rtdb , `chats/${roomId}/messages`);
 
     onChildAdded(msgRef , (snapshot)=>{
         const msg = snapshot.val();
@@ -57,7 +58,7 @@ function renderMessages(msg , user){
   const messagesDiv = document.getElementById("messages");
   const div = document.createElement("div");
   
-  div.className = msg.sender === user.uid ? "self" : "other"; 
+  div.className = msg.sender === user.uid ? "msg self" : "msg other"; 
   div.textContent = msg.text;
   messagesDiv.appendChild(div);
 

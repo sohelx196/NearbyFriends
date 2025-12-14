@@ -8,6 +8,7 @@ import { showReqPopup } from "../../utils/showRequestMsg.js";
 
 
 export async function sendChatRequest(recieverId , recieverName , senderId){
+
      const reqRef = ref(rtdb , `requests/${recieverId}/${senderId.uid}`);
 
      await set(reqRef , {
@@ -24,10 +25,9 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
       const data = snapshot.val();
       if(data && data.status === "accepted"){
          alert(`${recieverName} accepted you request`)
-         window.location.href = `../chat/chat.html?room=${makeroomId(recieverId, senderId)}`;
+         window.location.href = `../chat/chat.html?room=${makeroomId(recieverId, senderId.uid)}`;
       }
    })
-
 }
 
 export async function listenChatRequest(user){
@@ -36,8 +36,8 @@ const userReqRef = ref(rtdb  , `requests/${user.uid}`);
 
 onChildAdded(userReqRef , async (snapshot)=>{
    const request = snapshot.val();
-   const key = snapshot.key;
-   const reqRef = ref(rtdb, `requests/${user.uid}/${key}`);
+   const senderUid = snapshot.key;
+   const reqRef = ref(rtdb, `requests/${user.uid}/${senderUid}`);
 
    if(request.status === "pending"){
       let accept = await showReqPopup(`Chat request from ${request.name}. Accept?`);
@@ -45,28 +45,28 @@ onChildAdded(userReqRef , async (snapshot)=>{
          await update(reqRef , {status : "accepted"});
       }
       else{
-         clearChatRequest(user.uid , key)
+         clearChatRequest(user.uid , senderUid)
       }
    }
 });
 
 onChildChanged(userReqRef , async (snapshot)=>{
    const request = snapshot.val();
-   const key = snapshot.key;
+   const senderUid = snapshot.key;
+   console.log(senderUid)
 
    if(request.status === "accepted"){
-      // alert(`${request.name} accepted your request`);
-      window.location.href = `/features/chat/chat.html?room=${makeroomId(user.uid , key)}`
+      window.location.href = `/features/chat/chat.html?room=${makeroomId(user.uid , senderUid)}`
    }
    else{
-      clearChatRequest(user.uid , key);
+      clearChatRequest(user.uid , senderUid);
    }
 });
 
 }; 
 
 
-function makeroomId(uid1 , uid2){
+export function makeroomId(uid1 , uid2){
    return [uid1 , uid2].sort().join("_");
 }
 
