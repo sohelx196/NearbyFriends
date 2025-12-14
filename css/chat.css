@@ -34,3 +34,16 @@ body {
     padding: 10px;
     background-color: antiquewhite;
 }
+
+
+.msg.self {
+  background: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+.msg.other {
+  background: #eee;
+  color: black;
+  align-self: flex-start;
+}
