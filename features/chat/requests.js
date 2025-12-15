@@ -75,7 +75,7 @@ export async function clearChatRequest(currentUserId,fromUserId){
   const reqRef = ref(rtdb , `requests/${currentUserId}/${fromUserId}`);
   await remove(reqRef);
 }
-
+   
 
 // export async function acceptChatRequest(currentUserId  , fromUserId) {
 //    const reqRef = ref(rtdb , `requests/${currentUserId}/${fromUserId}`);

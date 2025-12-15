@@ -21,7 +21,6 @@ async function initChat() {
 
 }
 
-
 function listenMessages(roomId , user){
 
   const msgRef = ref(rtdb , `chats/${roomId}/messages`);

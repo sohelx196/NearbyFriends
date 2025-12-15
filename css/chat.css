@@ -10,14 +10,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: end;
-
+    
 }
 
 #messages{
     text-align: center;
     margin-bottom: 10px;
+     flex: 1;             
+  overflow-y: auto;   
 }
-
+   
 #sendBox{
     margin-bottom: 20px;
 }
