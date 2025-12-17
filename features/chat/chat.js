@@ -1,7 +1,11 @@
 
-import  {rtdb} from "../../server/firebase.js";
+import  {rtdb , db} from "../../server/firebase.js";
 import { initAuth } from "../../server/authManager.js";
-import { ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { ref, push, onChildAdded  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { setDoc, doc ,getDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+
+const {user,  profile} = await initAuth({requireLogin : true});
 
 async function initChat() {
     
@@ -13,7 +17,7 @@ async function initChat() {
     return;
   }
 
-  const {user,  profile} = await initAuth({requireLogin : true});
+
   document.getElementById("header").innerText = `Chatting as ${profile.name}`;
   
   listenMessages(roomId , user);
@@ -31,6 +35,16 @@ function listenMessages(roomId , user){
     })
 }
 
+// extracting  recieverId from the currentUrl...
+const param  = new URLSearchParams(window.location.search);
+const roomId = param.get("room");
+
+const ids = roomId.split("_");  // gives array of two strings...
+const receiverId = ids[0] === user.uid ? ids[1] : ids[0];
+
+// getting reciever name...
+const docSnap = await getDoc(doc(db , "users" , receiverId));
+const recieverName = docSnap.data().name;
 
  function setupSendMessage(roomId , user){
 
@@ -46,7 +60,27 @@ function listenMessages(roomId , user){
         sender : user.uid,
         text,
         timestamp : Date.now(),
-    })
+    });
+
+    // recentChats for both user...
+     const senderRef = doc(db , "users" , user.uid , "recentChats" , receiverId);
+     
+     const recieverRef = doc(db , "users" , receiverId , "recentChats" , user.uid);
+  
+     await setDoc(senderRef , {
+      partnerId : receiverId,
+      partnerName : recieverName,
+      lastMessage :  text,
+      lastTimestamp : Date.now()
+     })
+
+     await setDoc(recieverRef , {
+      partnerId: user.uid,
+      partnerName: profile.name || "Unknown",
+      lastMessage: text,
+      lastTimestamp: Date.now(),
+     })
+
 
     input.value = "";
   })

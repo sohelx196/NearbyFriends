@@ -9,6 +9,7 @@ import { showReqPopup } from "../../utils/showRequestMsg.js";
 
 export async function sendChatRequest(recieverId , recieverName , senderId){
 
+
      const reqRef = ref(rtdb , `requests/${recieverId}/${senderId.uid}`);
 
      await set(reqRef , {
@@ -19,7 +20,7 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
      });
 
      alert(`Chat request send to ${recieverName}`);
-
+    
    // listening to the reciever response..
     onValue(reqRef , (snapshot)=>{
       const data = snapshot.val();
