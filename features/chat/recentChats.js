@@ -35,4 +35,4 @@ onSnapshot(q , (snapshot)=>{
 
       list.appendChild(li);
     });
-});  
+});   

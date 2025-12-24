@@ -1,0 +1,18 @@
+{
+  "name": "nearbyfriends",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "daisyui": "^5.5.14",
+    "tailwindcss": "^4.1.18"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/index.css",
+    "watch:css": "tailwindcss -i ./css/input.css -o ./css/index.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

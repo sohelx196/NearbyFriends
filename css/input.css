@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.topBar{text-align: end;background-color: aliceblue;}
+
+.userLoggedStatus{
+    color: black;
+}
+
+
+#main-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+
+.main-btn{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+.main-btn:hover{
+  background-color: yellowgreen;
+}
