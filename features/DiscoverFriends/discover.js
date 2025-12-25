@@ -77,7 +77,7 @@ function renderFriends(friends){
     friendsList.innerHTML = "";
     
     if(!friends.length){
-        friendsList.innerHTML = "<h2>Loading available users..</h2>";
+        friendsList.innerHTML = '<span class="loading loading-spinner"></span>';
         return;
     }
 
@@ -86,9 +86,9 @@ function renderFriends(friends){
 
      li.innerHTML = `<strong>${f.name}</strong> - ${f.age} year old
      (<small>${f.distance.toFixed(2)} km away</small>)
-     <button class="chatBtn" data-id="${f.uid}">
+     <button class="chatBtn " data-id="${f.uid}">
        <span>Chat Now</span>
-       <span class="loading loading-ring loading-xs"></span>
+       <s pan class="loading loading-ring loading-xs"></span>
      </button>`;
     li.classList.add("friendList");
      friendsList.appendChild(li);
