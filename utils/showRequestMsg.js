@@ -9,7 +9,7 @@ export function showReqPopup(message) {
     
     // Modal box
     const modal = document.createElement("div");
-    modal.classList.add("modal");
+    modal.classList.add("chatModal");
 
     modal.innerHTML = `<p style="margin-bottom:15px;">${message}</p>
       <button id="acceptBtn" style="background:#22c55e;color:white;border:none;padding:8px 12px;border-radius:6px;margin-right:10px;">Accept</button>

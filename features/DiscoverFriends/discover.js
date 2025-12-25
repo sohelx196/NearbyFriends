@@ -78,7 +78,6 @@ function renderFriends(friends){
     
     if(!friends.length){
         friendsList.innerHTML = "<h2>Loading available users..</h2>";
-        
         return;
     }
 
