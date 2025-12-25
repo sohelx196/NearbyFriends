@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat Room</title>
-  <link rel="stylesheet" href="../../css/chat.css" />
-
-
-</head>
-<body>
-
-  <section id="">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="../../css/chat.css" />
+    <link rel="stylesheet" href="../../css/index.css" />
+  </head>
+  <body>
+    <section id="">
+      <!-- chat name -->
       <div id="header"></div>
+
       <div id="chatContainer">
+        <div id="sendBox">
+          <div id="messages">
           
-          
-          <div id="sendBox">
-          <div id="messages">Chat with your friend! Have a good day</div>
+            <div class="chat chat-start">
+              <div class="chat-bubble"></div>
+            </div>
+
+            <div class="chat chat-end">
+              <div class="chat-bubble opacity-0"></div>
+            </div>
+
+          </div>
 
           <input id="messageInput" placeholder="Type a message..." />
           <button id="sendBtn">Send</button>
         </div>
-    </div>
+      </div>
+    </section>
 
-  </section>
+    <!-- testing -->
 
-  <script type="module" src="./chat.js"></script>
-</body>
+    <script type="module" src="./chat.js"></script>
+  </body>
 </html>

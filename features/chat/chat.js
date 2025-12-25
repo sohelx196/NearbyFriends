@@ -35,7 +35,7 @@ function listenMessages(roomId , user){
     })
 }
 
-// extracting  recieverId from the currentUrl...
+// extracting recieverId from the currentUrl...
 const param  = new URLSearchParams(window.location.search);
 const roomId = param.get("room");
 
@@ -88,11 +88,11 @@ const recieverName = docSnap.data().name;
 
 
 function renderMessages(msg , user){
-  const messagesDiv = document.getElementById("messages");
+  const messagesDiv = document.querySelector("#messages");
   const div = document.createElement("div");
   
-  div.className = msg.sender === user.uid ? "msg self" : "msg other"; 
-  div.textContent = msg.text;
+  div.className = msg.sender === user.uid ? "chat chat-end" : "chat chat-start"; 
+  div.innerHTML = `<div class="chat-bubble">${msg.text}</div>`;
   messagesDiv.appendChild(div);
 
   // stick user to the latest msg..
