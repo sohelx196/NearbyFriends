@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
-        .login-container { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 300px; }
-        h2 { text-align: center; color: #333; }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 0.5rem; color: #555; }
-        input[type="email"], input[type="password"] { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 0.75rem; border: none; border-radius: 4px; background-color: #007bff; color: white; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-
-    <div class="login-container">
-        <h1 style="color: green;" id="loginSuccessMsg"></h1>
-        <h2>Login</h2>
-       
-        
-        <form>
-            <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
+    <div class="hero min-h-screen bg-base-200"  >
+      <div class="hero-content flex-col">
+        <div class="text-center lg:text-left">
+            <h1 style="color: green;" id="loginSuccessMsg"></h1>
+        </div>
+        <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <form class="card-body">
+            <h2 class="text-2xl font-bold text-center">Login</h2>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Email Address</span>
+              </label>
+              <input type="email" id="email" name="email" placeholder="email" class="input input-bordered" required />
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <a href="resetPass.html">Forgot Password?</a>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label>
+              <input type="password" id="password" name="password" placeholder="password" class="input input-bordered" required />
+              <label class="label">
+                <a href="resetPass.html" class="label-text-alt link link-hover">Forgot password?</a>
+              </label>
             </div>
-            <button type="submit" id="login">Log In</button>
-           <p>Don't Have an Account? <a href="signUp.html">SIgnUp</a></p>
-        </form>
+            <div class="form-control mt-6">
+              <button class="btn btn-secondary" type="submit" id="login">Log In</button>
+            </div>
+            <div class="text-center mt-4">
+                 <p>Don't Have an Account? <a href="signUp.html" class="link link-primary">SignUp</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
 

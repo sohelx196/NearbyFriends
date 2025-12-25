@@ -4,6 +4,7 @@ import { initAuth } from "../../server/authManager.js";
 import { autoUpdateLocation } from "../../utils/locationUpadater.js";
 import {  listenChatRequest, sendChatRequest } from "../chat/requests.js";
 
+
 let friendsList = document.querySelector("#friendsList");
 
 const { user, profile } = await initAuth({ requireLogin: true });
@@ -71,7 +72,6 @@ onSnapshot(rawUser, (snapshot) => {
 }
 
 
-
 function renderFriends(friends){ 
 
     friendsList.innerHTML = "";
@@ -82,12 +82,15 @@ function renderFriends(friends){
         return;
     }
 
-    friends.forEach((f) => {
+     friends.forEach((f) => {
      const li = document.createElement("li");
 
      li.innerHTML = `<strong>${f.name}</strong> - ${f.age} year old
      (<small>${f.distance.toFixed(2)} km away</small>)
-     <button class="chatBtn" data-id="${f.uid}">Chat Now</button>`;
+     <button class="chatBtn" data-id="${f.uid}">
+       <span>Chat Now</span>
+       <span class="loading loading-ring loading-xs"></span>
+     </button>`;
     li.classList.add("friendList");
      friendsList.appendChild(li);
 

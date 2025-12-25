@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,41 +8,46 @@
 
     <title>NearbyFriends : Make unknown friends around you</title>
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/input.css">
     <link rel="stylesheet" href="./css/showReqMsg.css">
     
 </head>
 <body>
 
-  <div style="display: flex;  justify-content: space-between;">
+  <!-- Top section -->
+<div class="flex justify-between items-center">
     <div style="height: auto;">
       <img src="/assets/NearbyShareLogo.svg" alt="" style="height: 120px; width: 120px;">
     </div>
 
-<div> 
-  <a href="./features/CompleteProfile.html">
-    <div>
+  <div class="flex space-x-4 "> 
+      <div class="btn btn-info">
+      <a href="./features/CompleteProfile.html">
         <h2 class="">Profile</h2>
+      </a>  
     </div>
-  </a>  
-</div>
+
+    <div class=" btn btn-error text-white">
+      <button class="" id="signOutBtn">LogOut</button>
+    </div>
+  </div>
   
   </div>
 
-<div class="topBar btn">
+<div class="topBar ">
     <h2 id="userLoggedStatus"></h2>
-    <button class="main-btn" id="signOutBtn">LogOut</button>
-</div>
-
+</div>  
 
 
 <section id="main-section">
-  <div>
-    <a href="./features/DiscoverFriends/discover.html"><button class="main-btn">Discover friends</button></a>
+  <div class="">
+    <a href="./features/DiscoverFriends/discover.html"><button class="btn   border border-black  ml-5">Discover friends</button></a>
   </div>
-  <div>
-    <a href="/features/chat/recentChats.html"><button class="main-btn">Recent Chats</button></a>
+  <div class="">
+    <a href="/features/chat/recentChats.html"><button class="btn   border border-black ml-5">Recent Chats</button></a>
   </div>
 </section>
+
 
 
 

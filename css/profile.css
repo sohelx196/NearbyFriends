@@ -62,7 +62,7 @@ h2 {
 
 
 
-#loadingProfile{
+#loadingProfile{    
     display: flex;
     justify-content: center ;
 }
