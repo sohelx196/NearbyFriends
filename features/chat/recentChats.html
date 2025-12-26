@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recent Chats</title>
     <link rel="stylesheet" href="../../css/index.css">
+    <!-- <link rel="stylesheet" href="../../css/input.css">  -->
 </head>
 <body>
 
-<section>
-  <h2 class="text-2xl font-bold mb-4">Your Recent Chats</h2>
-  <div id="recentList" class="grid gap-4"></div>
-</section>
+  <div class="text-xl ">
+    <h1 class="">Your Recents Chats :</h1>
+  </div>
 
+<ul id="recentList" class="grid gap-4 "></ul>
 
+<template class="chat-card-template">
 
-
-<div class="border card bg-base-100 shadow-md">
+<li class="border card  shadow-md text-slate-600 ">
   <!-- <figure><img src="https://img.daisyui.com/images/profile/demo/1@94.webp" alt="profile" class="w-16 h-16 rounded-full object-cover"/></figure> -->
  
   <div class="card-body">
-    <h2 class="card-title">Dio Lupa</h2>
-    <p class="text-sm opacity-60">Remaining Reason</p>
+    <h2 class="card-title chatName text-2xl">Loading..</h2>
+    <p class="text-sm opacity-60 chatMessage">Loading..</p>
     <div class="card-actions justify-end">
-      <button class="btn btn-sm btn-primary">Message</button>
-      <button class="btn btn-sm btn-error text-white">Delete</button>
+      <button class="btn btn-sm btn-outline border-black openBtn">Message</button>
+      <button class="btn btn-sm btn-error text-white deleteBtn">Delete</button>
       <!-- <button class="btn btn-sm btn-ghost">
         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
       </button> -->
@@ -32,7 +33,9 @@
 
   </div>
   
-</div>
+</li>
+</template>
+
 
     <script type="module" src="recentChats.js"></script>
 </body>
