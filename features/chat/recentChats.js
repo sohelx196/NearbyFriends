@@ -17,9 +17,9 @@ onSnapshot(q , (snapshot)=>{
         const chat =  snapDoc.data();
        
 
-        const li = document.createElement("li");
+     const li = document.createElement("li");
 
-        li.innerHTML = `<strong>${chat.partnerName}</strong> <br>
+     li.innerHTML = `<strong>${chat.partnerName}</strong> <br>
       <small>${chat.lastMessage}</small><br>
       <button class="openBtn">Open Chat</button>
       <button class="deleteBtn">Delete</button>`;
