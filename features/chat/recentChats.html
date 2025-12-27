@@ -1,43 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recent Chats</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recent Chats</title>
 
-    <link rel="stylesheet" href="../../css/index.css">
-    <link rel="stylesheet" href="../../css/input.css"> 
+  <!-- Existing CSS (unchanged) -->
+  <link rel="stylesheet" href="../../css/index.css">
+  <link rel="stylesheet" href="../../css/input.css">
+
+  <!-- Tailwind + DaisyUI (only for design) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
 </head>
-<body>
 
-  <div class="text-xl bg-green-600 p-10 text-center">
-    <h1 class="font-medium">Your Recents Chats</h1>
+<body class="min-h-screen">
+
+<!-- 🔹 HEADER -->
+<div class="sticky top-0 z-10 bg-white/90 backdrop-blur shadow-sm">
+  <div class="max-w-3xl mx-auto px-4 py-4 text-center">
+    <h1 class="text-lg md:text-xl font-semibold">
+      Your Recent Chats
+    </h1>
   </div>
+</div>
 
-<ul id="recentList" class="grid gap-4 p-10"></ul>
+<!-- 🔹 RECENT CHAT LIST -->
+<ul
+  id="recentList"
+  class="max-w-3xl mx-auto grid gap-3 px-3 py-4 md:gap-4"
+></ul>
 
+<!-- 🔹 TEMPLATE (STRUCTURE SAME, ONLY DESIGN POLISH) -->
 <template class="chat-card-template">
+  <li
+    class="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition"
+  >
+    <div class="card-body p-4 md:p-5">
 
-<li class="border card  shadow-md text-slate-600 hover:shadow-lg hover:border-gray-500">
-  <!-- <figure><img src="https://img.daisyui.com/images/profile/demo/1@94.webp" alt="profile" class="w-16 h-16 rounded-full object-cover"/></figure> -->
- 
-  <div class="card-body">
-    <h2 class="card-title chatName text-2xl">Loading..</h2>
-    <p class="text-sm opacity-60 chatMessage">Loading..</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-sm btn-outline border-black openBtn">Message</button>
-      <button class="btn btn-sm btn-error text-white deleteBtn">Delete</button>
-      <!-- <button class="btn btn-sm btn-ghost">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
-      </button> -->
+      <div class="flex items-center gap-3">
+        <!-- avatar (optional future use, JS safe) -->
+        <div class="avatar placeholder">
+          <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full w-12">
+            <span class="text-sm">👤</span>
+          </div>
+        </div>
+
+        <div class="flex-1">
+          <h2 class="card-title chatName text-base md:text-lg font-semibold">
+            Loading..
+          </h2>
+          <p class="text-sm text-gray-500 chatMessage truncate">
+            Loading..
+          </p>
+        </div>
+      </div>
+
+      <div class="card-actions justify-end mt-3 gap-2">
+        <button
+          class="btn btn-sm rounded-full btn-outline border-gray-400 openBtn"
+        >
+          Message
+        </button>
+
+        <button
+          class="btn btn-sm rounded-full btn-error text-white deleteBtn"
+        >
+          Delete
+        </button>
+      </div>
+
     </div>
-
-  </div>
-  
-</li>
+  </li>
 </template>
 
+<!-- 🔹 JS (UNCHANGED) -->
+<script type="module" src="recentChats.js"></script>
 
-    <script type="module" src="recentChats.js"></script>
 </body>
 </html>
