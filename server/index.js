@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded" , async ()=>{
 
     // showing welcome user..
     if(profile){
-        userLoggedStatus.textContent = `Welcome Back : ${profile.name || "Guest"}`
+        userLoggedStatus.textContent = `${profile.name || "Guest"}`
     }
     else{
         userLoggedStatus.textContent = "Please Complete you profile!"

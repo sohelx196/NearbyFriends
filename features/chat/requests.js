@@ -19,7 +19,7 @@ export async function sendChatRequest(recieverId , recieverName , senderId){
         status : "pending",
      });
 
-     alert(`Chat request send to ${recieverName}`);
+     alert(`Chat request send to ${recieverName}.   You will be notified when accepted.`);
     
    // listening to the reciever response..
     onValue(reqRef , (snapshot)=>{
