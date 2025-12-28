@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recent Chats</title>
 
-  <!-- Existing CSS (unchanged) -->
   <link rel="stylesheet" href="../../css/index.css">
   <link rel="stylesheet" href="../../css/input.css">
-
-  <!-- Tailwind + DaisyUI (only for design) -->
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     body {
       background: #fafafa;
     }
   </style>
+
 </head>
 
 <body class="min-h-screen">
@@ -32,12 +28,11 @@
 </div>
 
 <!-- 🔹 RECENT CHAT LIST -->
-<ul
-  id="recentList"
-  class="max-w-3xl mx-auto grid gap-3 px-3 py-4 md:gap-4"
-></ul>
+<ul 
+id="recentList"
+  class="max-w-3xl mx-auto grid gap-3 px-3 py-4 md:gap-4"></ul>
 
-<!-- 🔹 TEMPLATE (STRUCTURE SAME, ONLY DESIGN POLISH) -->
+<!-- TEMPLATE -->
 <template class="chat-card-template">
   <li
     class="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
@@ -45,7 +40,7 @@
     <div class="card-body p-4 md:p-5">
 
       <div class="flex items-center gap-3">
-        <!-- avatar (optional future use, JS safe) -->
+        <!-- avatar -->
         <div class="avatar placeholder">
           <div class="border shadow-inner shadow-gray-300 text-white rounded-full w-12">
             <span class="text-sm">👤</span>
@@ -64,14 +59,12 @@
 
       <div class="card-actions justify-end mt-3 gap-2">
         <button
-          class="btn btn-sm rounded-full btn-outline border-gray-400 openBtn"
-        >
+          class="btn btn-sm rounded-full btn-outline border-gray-400 openBtn">
           Message
         </button>
 
         <button
-          class="btn btn-sm rounded-full btn-error text-white deleteBtn"
-        >
+          class="btn btn-sm rounded-full btn-error text-white deleteBtn">
           Delete
         </button>
       </div>
