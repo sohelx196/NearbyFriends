@@ -20,22 +20,23 @@
 </div>
 
     
-<div class="profile-container" id="content">
-    <h2>Complete Your Profile</h2>
+<div class=" profile-container" id="content">
+    <h2  class="text-2xl mb-6 border rounded-xl bg-slate-100">Complete Your Profile</h2>
 
-    <label>Your Name</label>
+    <label for="nameInput" class="border w-max rounded-xl bg-slate-100 px-2 border-teal-300">Your Name</label>
     <input type="text" id="nameInput" placeholder="Enter your name">
 
-    <label>Your Age</label>
+    <label for="ageInput" class="border w-max rounded-xl bg-slate-100 px-2 border-teal-300">Your Age</label>
     <input type="number" id="ageInput" placeholder="Enter your age">
 
-    <label>About Yourself</label>
+    <label for="aboutInput" class="border w-max rounded-xl bg-slate-100 px-2 border-teal-300">About Yourself</label>
     <textarea id="aboutInput" placeholder="Something about you..."></textarea>
 
     
-    <button id="saveProfileBtn">Save Profile</button>
-
+    <button id="saveProfileBtn" class="btn btn-success  text-white">Save Profile</button>
 </div>
+
+
 
 <script type="module" src="../server/firebase.js"></script>
 <script type="module" src="../server/completeProfile.js"></script>

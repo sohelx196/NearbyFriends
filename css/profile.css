@@ -10,7 +10,7 @@ h2 {
     margin-top: 30px;
     color: #333;
 }
-
+     
 .profile-container {
     opacity:0;
     width: 90%;
@@ -42,22 +42,6 @@ h2 {
 .profile-container textarea {
     height: 70px;
     resize: none;
-}
-
-#saveProfileBtn {
-    width: 100%;
-    padding: 12px;
-    background: #007BFF;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#saveProfileBtn:hover {
-    background: #0056b3;
 }
 
 
