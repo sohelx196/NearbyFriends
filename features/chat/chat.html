@@ -28,16 +28,8 @@
 <body class="h-screen flex flex-col">
 
 <!-- 🔹 HEADER (JS ke liye id same) -->
-<div id="header" class="bg-white shadow-sm px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
-  <!-- <div class="avatar online">
-    <div class="w-10 rounded-full">
-      <img src="https://i.pravatar.cc/150" />
-    </div>
-  </div>
-  <div>
-    <h3 class="font-semibold text-sm">Chat</h3>
-    <p class="text-xs text-gray-500">Online</p>
-  </div> -->
+<div  class="bg-white shadow-sm px-4 py-3 flex items-center gap-3 text-sm sticky top-0 z-10">
+  <span class="skeleton skeleton-text border border-black text-sm lg:text-lg px-2 lg:px-5  shadow" id="header">Loading...</span>
 </div>
 
 <!-- 🔹 CHAT CONTAINER -->
@@ -68,12 +60,12 @@
     <div class="bg-white px-3 py-2 flex gap-2 items-center border-t sticky bottom-0">
       <input
         id="messageInput"
-        placeholder="Message..."
-        class="input input-bordered w-full rounded-full"
+        placeholder="Type a Message..."
+        class="input input-bordered w-full rounded-full border-black"
       />
       <button
         id="sendBtn"
-        class="btn btn-circle bg-gradient-to-r from-pink-500 to-purple-600 text-white border-none">
+        class="btn btn-circle bg-green-600 text-white border-none">
         ➤
       </button>
     </div>
