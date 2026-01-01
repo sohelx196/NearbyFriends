@@ -18,7 +18,7 @@
 <nav class="navbar bg-white/90 backdrop-blur shadow-md px-4 md:px-8 sticky top-0 z-10">
   <div class="flex-1 flex items-center gap-2">
     <img src="/assets/NearbyShareLogo.svg" class="w-10 h-10 md:w-12 md:h-12 rounded-full" />
-    <span class="font-bold text-lg md:text-xl opacity-0 ">NearbyFriends</span>
+    <span class="skeleton skeleton-text font-bold text-xs lg:text-lg md:text-xl opacity-1 px-2 lg:px-4   "><span class="text-green-600">Nearby</span>Friends</span>
   </div>
 
   <div class="flex gap-2">
@@ -71,11 +71,81 @@
 </main>  
 
 
+<!-- Story Telling -->
+<section class="min-h-screen flex flex-col items-center justify-center  px-4 pb-24 font-sans">
+  <div class="max-w-2xl w-full space-y-10">
+
+    <h2 class="text-center  rounded-xl font-extrabold mb-8  tracking-tight drop-shadow-lg">
+       <span class="  border rounded-xl text-xl lg:text-4xl px-2 lg:px-5  shadow-md " >What is <span class="text-green-600">Nearby</span>Friends ?</span>
+    </h2>
+
+    <!-- Chat Bubbles -->
+    <div id="storyBubbles" class="flex flex-col space-y-5">
+
+      <div class="font-semibold self-start border border-gray-500 text-gray-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
+        <p>Hey! Ever noticed how many people are around you... but no one really talks anymore?</p>
+      </div>
+
+      <div class="self-end  bg-green-500 text-black rounded-2xl rounded-tr-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
+        <p>Yeah. We felt the same — so we built something to change that.</p>
+      </div>
+
+      <div class="font-semibold self-start border border-gray-500  text-gray-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
+        <p>No filters. No endless swipes. Just real people — nearby, online, and ready to chat.</p>
+      </div>
+
+      <div class=" self-end bg-green-500 text-black rounded-2xl rounded-tr-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
+        <p>Open the app, see who’s around, and say hello. Simple, genuine, human.</p>
+      </div>
+
+      <div class="font-semibold self-start border border-gray-500 text-gray-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
+        <p>Because sometimes, the right connection isn’t miles away — it’s right next to you.</p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div id="cta" class="text-center mt-12 opacity-1 transition-all duration-700">
+     <a href="/features/DiscoverFriends/discover.html">
+       <button class="btn bg-green-500 hover:bg-green-600 text-black text-lg font-semibold rounded-full px-10   hover:shadow-green-500/40 transition-all duration-300">
+          Try for Free
+       </button>
+     </a>
+
+      <p class="text-gray-800 text-sm lg:text-base mt-4">Your next chat might be just around the corner</p>
+    </div>
+  </div>
+</section>
+
+
+
 
 <!-- FOOTER -->
 <footer class="rounded-t-3xl border-black bg-white border h-32 flex justify-center items-center text-center text-black text-xs md:text-sm pb-4 ">
  <h2> © 2026 NearbyFriends • A <a href="https://soraalpha.netlify.app/" target="_blank" class="border border-black text-white rounded-xl p-1 bg-green-700" title="Alpha of Software Solution">SoraAlpha</a> Product </h2>
 </footer>
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bubbles = document.querySelectorAll("#storyBubbles > div");
+    const cta = document.getElementById("cta");
+
+    bubbles.forEach((bubble, i) => {
+      setTimeout(() => {
+        bubble.classList.remove("opacity-0", "translate-y-5");
+      }, i * 1400);
+    });
+
+    setTimeout(() => {
+      cta.classList.remove("opacity-0");
+    }, bubbles.length * 1400 + 800);
+  });
+</script>
+
 
 <!-- 🔹 SCRIPTS (UNCHANGED) -->
 <script type="module" src="./server/firebase.js"></script>
