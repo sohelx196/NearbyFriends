@@ -29,7 +29,7 @@ export function initAuth({requireLogin = false} = {}){
                    else{
                      currentProfile = null;
                    }
-                   // here we returning data as a object
+                   // Here we returning data as a object
                    resolve({user : currentUser , profile : currentProfile});                   
                 }
                 catch(error){
@@ -70,7 +70,7 @@ export function initAuth({requireLogin = false} = {}){
               })
              })
 
-        }
+            }
             else{
                 currentUser = null; 
                 currentProfile  = null;
