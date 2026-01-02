@@ -3,6 +3,7 @@ import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebas
 import { initAuth } from "../../server/authManager.js";
 import { autoUpdateLocation } from "../../utils/locationUpadater.js";
 import {  listenChatRequest, sendChatRequest } from "../chat/requests.js";
+import { initChat } from "../chat/chat.js";
 
 
 let friendsList = document.querySelector("#friendsList");

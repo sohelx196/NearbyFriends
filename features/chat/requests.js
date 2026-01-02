@@ -41,7 +41,7 @@ onChildAdded(userReqRef , async (snapshot)=>{
    const reqRef = ref(rtdb, `requests/${user.uid}/${senderUid}`);
 
    if(request.status === "pending"){
-      let accept = await showReqPopup(`Chat request from ${request.name}. Accept?`);
+      let accept = await showReqPopup(`Chat request from ${request.name}.`);
       if(accept){
          await update(reqRef , {status : "accepted"});
       }
