@@ -3,7 +3,7 @@ import  {rtdb , db} from "../../server/firebase.js";
 import { initAuth } from "../../server/authManager.js";
 import { ref, push, onChildAdded  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 import { setDoc, doc ,getDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-import { sendChatRequest } from "./requests.js";
+
 
 
 const {user,  profile} = await initAuth({requireLogin : true});
