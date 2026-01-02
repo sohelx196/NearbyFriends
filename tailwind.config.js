@@ -6,7 +6,11 @@ module.exports = {
     "./assets/**/*.{html,js}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+           sans: ['Montserrat', 'sans-serif'],
+        },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
