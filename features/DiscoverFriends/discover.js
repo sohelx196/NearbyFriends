@@ -3,7 +3,7 @@ import { collection, getDocs , onSnapshot} from "https://www.gstatic.com/firebas
 import { initAuth } from "../../server/authManager.js";
 import { autoUpdateLocation } from "../../utils/locationUpadater.js";
 import {  listenChatRequest, sendChatRequest } from "../chat/requests.js";
-import { initChat } from "../chat/chat.js";
+
 
 
 let friendsList = document.querySelector("#friendsList");
@@ -21,7 +21,7 @@ const { user, profile } = await initAuth({ requireLogin: true });
 
 
    
-// compute distance in km between two coordinates (Haversine formula)
+// Compute distance in km between two coordinates (Haversine formula)
 function getDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth radius km
   const dLat = (lat2 - lat1) * Math.PI / 180;
