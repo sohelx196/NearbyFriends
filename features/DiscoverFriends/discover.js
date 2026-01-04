@@ -85,7 +85,7 @@ function renderFriends(friends){
      friends.forEach((f) => {
      const li = document.createElement("li");
 
-     li.innerHTML = `<strong>${f.name}</strong> - ${f.age} year old
+     li.innerHTML = `<strong class="text-skeleton">${f.name}</strong> - ${f.age} year old
      (<small>${f.distance.toFixed(2)} km away</small>)
      <button class="chatBtn px-3" data-id="${f.uid}">
        <span>Chat Now</span>

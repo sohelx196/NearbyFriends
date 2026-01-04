@@ -3,7 +3,7 @@
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px dashed gray;
     
 }
 
