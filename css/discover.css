@@ -1,16 +1,20 @@
 .friendList{
-    margin-top: 30px;
-    border: 1px solid rgb(36, 34, 34);    
+    margin-top: 30px;   
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(13, 252, 41);
     cursor: pointer;
-    ;
+    border-bottom: 1px solid gray;
+    
+}
+
+.friendList:hover{
+    background-color:rgb(236, 227, 227);
 }
 
 .chatBtn{
     border: 2px  solid black ;
     border-radius:10px;
     background-color: rgb(190, 213, 232);
-    
+    display: flex;
+    align-items: center;
 }
