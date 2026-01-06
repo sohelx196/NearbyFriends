@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Page</title>
+    <link rel="stylesheet" href="/css/index.css">
+
     <style>
          body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
         .signup-container { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 300px; }
@@ -20,24 +22,21 @@
   <!-- <img src="../../assets/NearbyShareLogo.svg" alt="Nearby Share Logo" class="w-20 h-20 mb-4" /> -->
 
 
-    <div class="signup-container">
-        <h2>NearbyFriends</h2>
-        <h2>Sign Up</h2>
-         <!-- 
-            Action points to where your server processes the signup data. 
-            Method uses POST for security.
-        -->
+  <!-- <div class="">
+      <h2 class="font-bold text-2xl">Sign Up On</h2>
+      <h1>
+          <span class="skeleton skeleton-text font-bold text-xs lg:text-4xl md:text-xl opacity-1 px-2 lg:px-4   "><span class="text-green-600">Nearby</span>Friends</span>
+      </h1>
+  </div> -->
+
+    <!-- <div class="signup-container">    
         <form action="" method="POST">
-             <!-- <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div> -->
             <div class="form-group">
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password">Create Password:</label>
                 <input type="password" id="password" name="password" required minlength="6">
             </div>
 
@@ -46,7 +45,45 @@
             <p>Already Have an Account? <a href="login.html">Login</a></p>
         </form>
     </div>
- 
+  -->
+
+
+
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content flex-col">
+
+    <div class="text-center lg:text-center py-6">
+      <p class="mb-3">
+       <span class="skeleton skeleton-text font-bold text-2xl lg:text-3xl md:text-xl opacity-1 px-2 lg:px-4   "><span class="text-green-600">Nearby</span>Friends</span>
+      </p>
+      <p class="text-2xl">Who’s around? Find out. Connect instantly.</p>
+    </div>
+
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div class="card-body">
+
+         <h1 class="text-2xl font-bold text-center">SignUp Now!</h1>
+
+        <fieldset class="fieldset font-bold">
+          <label class="label mb-0">Email</label>
+          <input type="email" id="email" name="email" class="input" placeholder="Email" />
+
+          <label class="label mb-0 mt-3 ">Create Password</label>
+          <input type="password" id="password" name="password"  class="input" placeholder="Password" />
+
+          <p id="signupStatus" class="text-red-700 "></p>
+
+          <p class="py-2">Already Have an Account? <a href="login.html" class="btn btn-xs border rounded-2xl p-1 bg-green-600 text-white">Login</a></p>
+          <button type="submit" id="signUpBtn"  class="btn btn-neutral mt-4 ">Signup</button>
+        </fieldset>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    
 
     <script type="module" src="./server/firebase.js"></script>  
    <script type="module" src="./server/auth.js"></script>

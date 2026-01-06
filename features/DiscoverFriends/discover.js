@@ -44,8 +44,7 @@ async function loadNearbyFriends() {
 onSnapshot(rawUser, (snapshot) => {
 
   let onlineFriends = []
- 
-
+           
     for(const doc of snapshot.docs){
          let friend = {uid : doc.id , ...doc.data()};
          if(doc.id == user.uid) continue;
@@ -78,9 +77,9 @@ function renderFriends(friends){
     friendsList.innerHTML = "";
     
     if(!friends.length){                                                  
-        friendsList.innerHTML = '<span class="loading loading-spinner"></span>';
+        friendsList.innerHTML = 'Searching...<span class="loading loading-spinner"></span>';
         return;
-    }
+    } 
 
      friends.forEach((f) => {
      const li = document.createElement("li");
