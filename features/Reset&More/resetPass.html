@@ -12,8 +12,8 @@
   </head>       
 
   <body class=" bg-base-200 h-screen flex items-center justify-center">
-
-    <div class="  card w-max bg-base-100 shadow-xl">
+     
+    <div class="  card w-max bg-transparent   border border-gray-400  ">
       <div class="card-body ">
         <h2 class="text-2xl font-bold text-center mb-2">Reset Password</h2>
 
@@ -39,7 +39,7 @@
             <p id="msg"></p>
           </div>
 
-          <button type="submit" id="resetBtn" class="btn btn-primary w-full mt-2 border border-gray-400">
+          <button type="submit" id="resetBtn" class="btn btn-neutral w-full border border-gray-400">
             Reset Password
           </button>
 
@@ -47,12 +47,11 @@
         <div class="text-center mt-4 text-sm text-gray-500">
           <p>
             Remember your password?
-            <a href="../../login.html" class="link link-primary">Login here</a>
+            <a href="../../login.html" class="btn btn-xs border border-gray-400 bg-green-500">Login here</a>
           </p>
         </div>
       </div>
     </div>
-
 
 
     <script type="module" src="../../server/firebase.js"></script>   
