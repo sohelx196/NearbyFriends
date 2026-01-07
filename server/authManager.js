@@ -48,7 +48,7 @@ export function initAuth({requireLogin = false} = {}){
              });  
 
              // mark user offline...
-            onDisconnect(userStatusRef).set({online: false ,lastActive: Date.now() });
+            onDisconnect(userStatusRef).set({online: false , lastActive: Date.now() });
             
             // sync the rtdb with firestore...   
             onValue(userStatusRef , async (snapshot)=>{
@@ -69,8 +69,8 @@ export function initAuth({requireLogin = false} = {}){
                 lastActive : serverTimestamp(),
               })
              })
-
             }
+
             else{
                 currentUser = null; 
                 currentProfile  = null;

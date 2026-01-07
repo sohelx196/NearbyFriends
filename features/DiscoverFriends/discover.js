@@ -41,9 +41,9 @@ async function loadNearbyFriends() {
   // let rawUser = await getDocs(collection(db , "users"));
   let rawUser = collection(db , "users");
   
-onSnapshot(rawUser, (snapshot) => {
+  onSnapshot(rawUser, (snapshot) => {
 
-  let onlineFriends = []
+    let onlineFriends = []
            
     for(const doc of snapshot.docs){
          let friend = {uid : doc.id , ...doc.data()};
