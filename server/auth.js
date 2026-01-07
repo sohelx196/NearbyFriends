@@ -144,7 +144,6 @@ document.querySelector("#resetBtn").addEventListener("click" , async ()=>{
     try{
         await sendPasswordResetEmail(auth , email);
         msg.textContent = "Check Your Email to Reset Password!";
-        msg.style.color = "green";
     }
     catch(e){
         msg.textContent = e.message;
