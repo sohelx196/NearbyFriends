@@ -136,18 +136,19 @@ if(page.includes("login.html")){
 
 
 // reset password 
-// document.querySelector("#resetBtn").addEventListener("click" , async ()=>{
-//     let email = document.querySelector("#forgotEmail").value;
-//     let msg = document.querySelector("#msg");
-
-//     try{
-//         await sendPasswordResetEmail(auth , email);
-//         msg.textContent = "Check Your Email to reset Password!";
-//         msg.style.color = "darkblue";
-//     }
-//     catch(e){
-//         msg.textContent = e.message;
-//         msg.style.color  =  "red";
-//     }
+document.querySelector("#resetBtn").addEventListener("click" , async ()=>{
+    let email = document.querySelector("#forgotEmail").value;
+    let msg = document.querySelector("#msg");
     
-// })
+
+    try{
+        await sendPasswordResetEmail(auth , email);
+        msg.textContent = "Check Your Email to Reset Password!";
+        msg.style.color = "green";
+    }
+    catch(e){
+        msg.textContent = e.message;
+        msg.style.color  =  "red";
+    }
+    
+})
