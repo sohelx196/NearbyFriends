@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +9,41 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/input.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-
 </head>
+
 <body>
 
-<div id="loadingProfile" class=" flex justify-center items-center h-screen ">
+    <div id="loadingProfile" class=" flex justify-center items-center h-screen ">
       <button class="btn">
-        <span class="loading loading-spinner"></span>
-         loading
-      </button>
-</div>
+          Loading Your Profile
+          <span class="loading loading-spinner"></span>
+      </button> 
+    </div>
 
-
-
-<div class="profile-container shadow shadow-green-950 " id="content">
+    <div class="profile-container shadow shadow-green-950 " id="content">
     <h2  class="text-2xl mb-6 border rounded-xl bg-slate-100">Complete Your Profile</h2>
 
     <label for="nameInput" class="border w-max rounded-xl bg-slate-100 px-2 border-teal-300">Your Name</label>
     <input  type="text" id="nameInput" placeholder="Enter your name">
-
+ 
     <label for="ageInput" class="border w-max rounded-xl bg-slate-100 px-2 border-teal-300">Your Age</label>
     <input  type="number" id="ageInput" placeholder="Enter your age">
+
+    <!-- <div class="flex justify-start items-center">
+      <input type="radio" name="gender" value="male">
+      <input type="radio" name="gender" value="female">
+    </div> -->
 
     <label for="aboutInput" class="border w-max rounded-xl bg-slate-100 px-2 border-teal-300">About Yourself</label>
     <textarea  id="aboutInput" placeholder="Something about you..."></textarea>
 
     
-    <button id="saveProfileBtn" class="btn  border border-black text-black shadow shadow-black">Save Profile</button>
-</div>
+      <button id="saveProfileBtn" class="btn  border border-black text-black shadow shadow-black">Save Profile</button>
+     </div>
  
 
 <footer class=" mb-0 bg-white flex justify-center items-center text-center text-black text-xs md:text-sm  ">
- <h2> © 2026 NearbyFriends • A <a href="https://soraalpha.netlify.app/" target="_blank" class="border border-black text-white rounded-xl p-1 bg-green-700" title="Alpha of Software Solution">SoraAlpha</a> Product </h2>
+  <h2> © 2026 NearbyFriends • A <a href="#"   class="border font-bold border-black  rounded-xl p-1 " title="Alpha of Software Solution">SoraAlpha</a> Product </h2>
 </footer>
 
 

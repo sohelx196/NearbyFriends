@@ -62,7 +62,6 @@ if(loginBtn){
 
         try{    
             await signInWithEmailAndPassword(auth , email , password);
-            // alert("Login Succcessfullu!");
             // loginSuccessMsg.textContent = "Login Successfully!!"
             setTimeout(() => {                
                 window.location.href = "index.html";
@@ -76,20 +75,19 @@ if(loginBtn){
 
 
 // SignOut User 
-
 if(signOutBtn){ 
     signOutBtn.addEventListener("click", async ()=>{
 
      try{
          await signOut(auth);
-         alert("SignOut Successfully!!");
+         alert("Logout Successfully!!");
          window.location.replace('login.html');
      }
      catch(error){
          alert("Failed!!!" , error)
      }
 
-    })
+   })
 }
 
     

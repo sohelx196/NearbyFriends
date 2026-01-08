@@ -1,10 +1,12 @@
 import { db } from "../../server/firebase.js";
 import { initAuth } from "../../server/authManager.js";
 import { collection, onSnapshot, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-import { makeroomId } from "./requests.js";
+import { listenChatRequest, makeroomId } from "./requests.js";
 
 
 const { user } = await initAuth({ requireLogin: true });
+
+listenChatRequest(user)  // chat request listening...
 
 const q = query(collection(db  , "users" , user.uid , "recentChats"), orderBy("lastTimestamp" , "desc"));
 
@@ -14,6 +16,7 @@ const template = document.querySelector(".chat-card-template");
 
 onSnapshot(q , (snapshot)=>{
     list.innerHTML = "";
+    
     snapshot.forEach((snapDoc) => {
       
       const chat =  snapDoc.data();
@@ -43,8 +46,6 @@ onSnapshot(q , (snapshot)=>{
 
       list.appendChild(clone);
 
-
-
-
     });
+
 });   

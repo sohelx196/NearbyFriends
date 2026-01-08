@@ -4,26 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>NearbyFriends | Make around friends</title>
+  <title>NearbyFriends</title>
   <link rel="icon" type="image/png" href="/assets/NearbyShareLogo.svg">
 
      <link rel="stylesheet" href="/css/index.css">
      <link rel="stylesheet" href="/css/showReqMsg.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-
+    
 </head>
 
-<body class="bg-teal-200 " >
+<body class="bg-teal-200 ">
 
 <!-- NAVBAR -->
 <nav class="navbar bg-white/90 backdrop-blur shadow-md px-4 md:px-8 sticky top-0 z-10">
   <div class="flex-1 flex items-center gap-2">
     <img src="/assets/NearbyShareLogo.svg" class="w-10 h-10 md:w-12 md:h-12 rounded-full" />
-    <span class="skeleton skeleton-text font-bold text-xs lg:text-lg md:text-xl opacity-1 px-2 lg:px-4   "><span class="text-green-600">Nearby</span>Friends</span>
+    <span class="skeleton font-bold text-xs lg:text-lg md:text-xl opacity-1 px-2 lg:px-4   "><span class="text-green-600">Nearby</span>Friends</span>
   </div>
 
-  <div class="flex gap-2">
+  <div class="flex gap-2 ">
     <a href="./features/CompleteProfile.html" class=" btn btn-sm md:btn-md btn-outline ">
       Profile
     </a>
@@ -34,9 +33,7 @@
 </nav>
 
 
-
-
-<!-- 🔹 MAIN -->
+<!-- MAIN -->
 <main class=" h-screen flex-grow flex items-center justify-center   ">
   <div class=" rounded-3xl  w-full max-w-sm md:max-w-md p-6 md:p-8 text-center">
 
@@ -108,7 +105,7 @@
     <!-- CTA -->
     <div id="cta" class="text-center mt-12 opacity-1 transition-all duration-700">
      <a href="/features/DiscoverFriends/discover.html">
-       <button class="btn bg-green-500 hover:bg-green-600 text-black text-lg font-semibold rounded-full px-10   hover:shadow-green-500/40 transition-all duration-300">
+       <button class="btn  bg-green-500 hover:bg-green-600 text-black text-lg font-semibold rounded-full px-10   hover:shadow-green-500/40 transition-all duration-300">
           Try for Free
        </button>
      </a>
@@ -120,12 +117,10 @@
 
 
 
-
-<!-- FOOTER -->
+<!-- FOOTER  (https://soraalpha.netlify.app/)-->
 <footer class="rounded-t-3xl border-black bg-white border h-32 flex justify-center items-center text-center text-black text-xs md:text-sm pb-4 ">
- <h2> © 2026 NearbyFriends • A <a href="https://soraalpha.netlify.app/" target="_blank" class="border border-black text-white rounded-xl p-1 bg-green-700" title="Alpha of Software Solution">SoraAlpha</a> Product </h2>
+ <h2 class=""> &copy; 2026 NearbyFriends • A <a href="#"  class="border border-black bg-slate- rounded-xl p-1 font-bold" title="Alpha of Software Solution">SoraAlpha</a> Product </h2>
 </footer>
-
 
 
 
@@ -148,7 +143,7 @@
 </script>
 
 
-<!-- 🔹 SCRIPTS (UNCHANGED) -->
+<!--  SCRIPTS  -->
 <script type="module" src="./server/firebase.js"></script>
 <script type="module" src="./server/auth.js"></script>
 <script type="module" src="./server/index.js"></script>

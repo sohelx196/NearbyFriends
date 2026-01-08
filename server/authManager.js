@@ -11,10 +11,11 @@ export function initAuth({requireLogin = false} = {}){
 
     return new Promise((resolve , reject)=>{
         onAuthStateChanged(auth ,  async (user)=>{
-            
+        
+                     
             if(user){
                 currentUser  = user;
-                
+              
                 // fetch profile data from firestore..
                 let userStatusRef = ref(rtdb , "/status/" + user.uid);
 
@@ -28,7 +29,7 @@ export function initAuth({requireLogin = false} = {}){
                    }
                    else{
                      currentProfile = null;
-                   }
+                   } 
                    // Here we returning data as a object
                    resolve({user : currentUser , profile : currentProfile});                   
                 }
@@ -69,7 +70,7 @@ export function initAuth({requireLogin = false} = {}){
                 lastActive : serverTimestamp(),
               })
              })
-            }
+            }  
 
             else{
                 currentUser = null; 
