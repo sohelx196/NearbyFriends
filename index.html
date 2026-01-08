@@ -34,32 +34,35 @@
 
 
 <!-- MAIN -->
-<main class=" h-screen flex-grow flex items-center justify-center   ">
-  <div class=" rounded-3xl  w-full max-w-sm md:max-w-md p-6 md:p-8 text-center">
+<main class=" py-20 lg:h-screen flex-grow flex items-center justify-center   ">
+  <div class="  rounded-3xl  w-max  p-6 md:p-8 text-center">
 
-    <img
+    <!-- <img
       src="/assets/NearbyShareLogo.svg"
       class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4"
-    />
+    /> -->
 
-    <h2 class="text-xl md:text-2xl font-bold">      
+<div class="mb-10">
+    <h2 class="text-3xl md:text-7xl font-bold">      
       Hello,
-      <span id="userLoggedStatus" class="text-pink-600"></span>
+      <span id="userLoggedStatus" class="text-pink-600 "></span>
     </h2>
 
-    <p class="text-gray-500 mt-2 text-sm md:text-base">
+    <p class="text-gray-500 mt-6 text-sm md:text-2xl font-bold">
       Make friends who are online around you
     </p>
+</div>
 
-    <div class="mt-6 flex flex-col gap-3 md:gap-4">
+
+    <div class="mt-6 flex flex-row gap-3 md:gap-4 justify-center">
       <a href="./features/DiscoverFriends/discover.html">
-        <button class="shadow shadow-black btn w-full rounded-full bg-green-500 hover:bg-green-300 text-black  hover:borde hover:border-black">
+        <button class="shadow shadow-black btn w-max rounded-full bg-green-500 hover:bg-green-300 text-black  hover:borde hover:border-black">
           Discover Friends  
         </button>
       </a>
 
       <a href="/features/chat/recentChats.html">
-        <button class="btn w-full rounded-full btn-outline hover:bg-green-50 hover:text-black">
+        <button class="btn w-max rounded-full btn-outline hover:bg-green-50 hover:text-black">
           Recent Chats
         </button>
       </a>
