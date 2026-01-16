@@ -10,7 +10,7 @@ const aboutInput = document.querySelector("#aboutInput");
 const saveBtn = document.querySelector("#saveProfileBtn");
 const loadingProfile = document.querySelector("#loadingProfile");
 const content = document.querySelector("#content");
- 
+
 
 
 // check for user is logged in or not..
