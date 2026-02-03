@@ -17,6 +17,7 @@ if(signUpBtn){
 
     signUpBtn.addEventListener("click" , async (e)=>{
         e.preventDefault();
+        
 
         let email = document.querySelector("#email").value;
         let password = document.querySelector("#password").value;

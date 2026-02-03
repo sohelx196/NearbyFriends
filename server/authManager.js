@@ -2,7 +2,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/fi
 import { doc, getDoc , updateDoc , serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { auth, db ,rtdb } from "./firebase.js";
 import { ref, onDisconnect, set , onValue } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
-import { useCallback } from "react";
+
 
 
 
@@ -83,6 +83,7 @@ export function initAuth({requireLogin = false} = {}){
                 if(requireLogin){
                       alert("Please log in first.");
                       window.location.href = "../login.html";
+                          
                 }
                 resolve({user : null , profile : null})
             }
