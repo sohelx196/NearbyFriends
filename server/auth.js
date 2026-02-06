@@ -79,9 +79,12 @@ if(loginBtn){
 if(signOutBtn){ 
     signOutBtn.addEventListener("click", async ()=>{
 
+    const confirmLogout = confirm("Are you sure you want to logout?")
+
+    if(!confirmLogout) return;
+
      try{
          await signOut(auth);
-         alert("Logout Successfully!!");
          window.location.replace('login.html');
      }
      catch(error){
