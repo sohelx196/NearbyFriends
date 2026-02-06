@@ -87,7 +87,7 @@ export function initAuth({requireLogin = false} = {}){
                 }
                 resolve({user : null , profile : null})
             }
-           
+            
         })
     });
 }

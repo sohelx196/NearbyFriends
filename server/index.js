@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded" , async ()=>{
     }
     else{
         userLoggedStatus.textContent = "Please Complete your profile!"
-    }
+    } 
 })
 
 
