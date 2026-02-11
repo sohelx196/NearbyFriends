@@ -46,7 +46,7 @@ if(signUpBtn){
             const signupStatus = document.querySelector("#signupStatus");
             signupStatus.textContent = error.message;
             // console.log("Something Went Wrong!!" , error); 
-        }   
+        }
 
     })
 

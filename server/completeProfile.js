@@ -70,7 +70,7 @@ saveBtn.addEventListener("click" , async ()=>{
     const about = aboutInput.value.trim();
 
   // before we submit, we need to take the users location..so we did below
-
+    
   let location = null;
   try{
     const position =  await new Promise((resolve , reject) =>{
