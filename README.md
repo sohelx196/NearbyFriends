@@ -1,6 +1,8 @@
 A real-time web app that helps users discover and chat with nearby online friends — powered by Firebase (Auth, Firestore, and Realtime Database).
 Users can update their live location, view who’s nearby within a defined distance, send chat requests, and instantly message once connected.
 
+nearbyfriends.live
+
 *** Features ***
 
 ✅ User Authentication — Secure Firebase Email/Password login & signup
