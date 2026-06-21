@@ -18,7 +18,7 @@ export async function updateUserLocation(user){
      }
 
      await updateDoc(doc(db , "users" , user.uid) , {location});
-     console.log("✅ Location updated:" , location);
+     console.log("Location updated:" , location);
      return location;
   }
   catch(e){
