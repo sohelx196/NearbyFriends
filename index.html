@@ -3,155 +3,630 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NearbyFriends – Discover and connect with real people around you who are online right now. No swipes, no filters, just genuine human connections nearby." />
+  <title>NearbyFriends | Connect Around You</title>
+  <link rel="icon" type="image/png" href="/assets/NearbyShareLogo.svg" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/showReqMsg.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <title>NearbyFriends | Make around friends</title>
-  <link rel="icon" type="image/png" href="/assets/NearbyShareLogo.svg">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    html{
+    overflow-x:hidden;
+}
 
-     <link rel="stylesheet" href="/css/index.css">
-     <link rel="stylesheet" href="/css/showReqMsg.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+body{
+    overflow-x:hidden;
+    position:relative;
+}
+    /* Subtle mesh background */
+    .page-bg {
+      background-color: #f8fafc;
+      background-image:
+        radial-gradient(ellipse 60% 40% at 10% 5%,  rgba(22,163,74,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 95%, rgba(16,185,129,0.08) 0%, transparent 60%);
+    }
 
+    /* Glowing blobs */
+    .blob {
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      opacity: 0.12;
+      animation: float-blob 22s infinite alternate;
+    }
+    .blob-1 {
+      background-color: #22c55e;
+      top: -5%;
+      left: -10%;
+    }
+    .blob-2 {
+      background-color: #10b981;
+      bottom: 20%;
+      right: -10%;
+      animation-delay: -7s;
+    }
+    @keyframes float-blob {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -40px) scale(1.05); }
+      100% { transform: translate(-20px, 30px) scale(0.95); }
+    }
 
+    /* Sonar online dot */
+    .sonar {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34,197,94,0.7);
+      animation: sonar 1.8s ease-out infinite;
+    }
+    @keyframes sonar {
+      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+      70%  { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+
+    /* Animated gradient heading */
+    .grad-text {
+      background: linear-gradient(90deg, #15803d 0%, #22c55e 50%, #15803d 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradMove 4s linear infinite;
+    }
+    @keyframes gradMove {
+      from { background-position: 0% center; }
+      to   { background-position: 200% center; }
+    }
+
+    /* Glow primary button */
+    .btn-primary-glow {
+      background: linear-gradient(135deg, #15803d, #22c55e);
+      color: #fff !important;
+      border: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 18px rgba(34,197,94,0.35);
+    }
+    .btn-primary-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(34,197,94,0.45);
+    }
+
+    /* Ghost green button */
+    .btn-ghost-g {
+      background: transparent;
+      border: 1.5px solid #16a34a;
+      color: #16a34a !important;
+      transition: background .2s, transform .2s;
+    }
+    .btn-ghost-g:hover {
+      background: rgba(22,163,74,0.07);
+      transform: translateY(-2px);
+    }
+
+    /* Feature card hover */
+    .feat-card {
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+    }
+    .feat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(34,197,94,0.13);
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
 
-<body class="bg-teal-200 " >
+<body class="page-bg min-h-screen overflow-x-hidden relative">
 
-<!-- NAVBAR -->
-<nav class="navbar bg-white/90 backdrop-blur shadow-md px-4 md:px-8 sticky top-0 z-10">
-  <div class="flex-1 flex items-center gap-2">
-    <img src="/assets/NearbyShareLogo.svg" class="w-10 h-10 md:w-12 md:h-12 rounded-full" />
-    <span class="skeleton skeleton-text font-bold text-xs lg:text-lg md:text-xl opacity-1 px-2 lg:px-4   "><span class="text-green-600">Nearby</span>Friends</span>
-  </div>
+  <!-- Glowing background blobs -->
+  <div class="blob blob-1 pointer-events-none absolute select-none"></div>
+  <div class="blob blob-2 pointer-events-none absolute select-none"></div>
 
-  <div class="flex gap-2">
-    <a href="./features/CompleteProfile.html" class=" btn btn-sm md:btn-md btn-outline ">
-      Profile
-    </a>
-    <button id="signOutBtn" class=" btn btn-sm md:btn-md btn-error text-white">
-      Logout
-    </button>
-  </div>
-</nav>
+  <!-- ══ NAVBAR ══ -->
+  <nav class="navbar bg-white/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-150 shadow-sm px-6 md:px-16 transition-all duration-300">
+    <div class="flex-1 flex items-center gap-3">
+      <div class="avatar">
+        <div class="w-9 h-9 ">
+          <img src="/assets/NearbyShareLogo.svg" alt="NearbyFriends" />
+        </div>
+      </div>
+      <span class="font-extrabold text-xl tracking-tight text-gray-900 skeleton px-3">
+        <span class="text-green-600" >Nearby</span>Friends
+      </span>
+    </div>
+    <div class="flex items-center gap-4">
+      
+      <div class="flex items-center gap-2 bg-gray-50 border border-gray-150 rounded-full pl-3.5 pr-1 py-1 text-sm font-semibold text-gray-700">
+        <span id="navUserGreeting" class="text-xs max-w-[100px] truncate">Profile</span>
+        <a href="./features/CompleteProfile.html" class="w-7 h-7 rounded-full bg-gradient-to-tr from-green-500 to-emerald-400 flex items-center justify-center text-white font-extrabold text-[10px] shadow-inner tracking-wider" id="navAvatar">
+          NF
+        </a>
+      </div>
+
+      <button id="signOutBtn" class="btn btn-xs sm:btn-sm btn-error text-white rounded-full font-bold px-3 border-none hover:bg-red-600 shadow-sm transition-all active:scale-95">Logout</button>
+    </div>
+  </nav>
 
 
+  <!-- ══ HERO ══ -->
+  <main class="relative z-10 px-6 py-12 md:py-24 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Text Column (Col Span 7) -->
+      <div class="lg:col-span-7 text-center lg:text-left">
+        
+        <!-- Live badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 border border-green-200 text-green-700 text-sm font-bold mb-6">
+          <span class="sonar"></span>
+          People are online near you right now
+        </div>
+
+        <!-- Greeting -->
+        <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-4 tracking-tight">
+          Hello,&nbsp;<span id="userLoggedStatus" class="grad-text"></span>
+        </h1>
+        <p class="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+          Meet people who are <span class="text-green-600 font-bold">online around you</span> right now.
+          No swiping. Just real, genuine connections.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-10">
+          <a href="./features/DiscoverFriends/discover.html" class="w-full sm:w-auto">
+            <button class="btn btn-primary-glow btn-lg rounded-full w-full px-8 font-bold gap-2 active:scale-95 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              Discover Friends
+            </button>
+          </a>
+          <a href="/features/chat/recentChats.html" class="w-full sm:w-auto">
+            <button class="btn btn-ghost-g btn-lg rounded-full w-full px-8 font-bold gap-2 active:scale-95 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+              </svg>
+              Recent Chats
+            </button>
+          </a>
+        </div>
+
+        <!-- DaisyUI Stats -->
+        <div class="stats stats-vertical sm:stats-horizontal w-full max-w-md overflow-hidden  rounded-2xl bg-white border border-gray-100">
+          <div class="stat place-items-center py-4 px-3">
+            <div class="stat-figure text-green-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div class="stat-title text-xs text-gray-400">People</div>
+            <div class="stat-value text-base text-green-600">Genuine</div>
+            <div class="stat-desc text-xs">Real connections</div>
+          </div>
+          <div class="stat place-items-center py-4 px-3">
+            <div class="stat-figure text-green-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              </svg>
+            </div>
+            <div class="stat-title text-xs text-gray-400">Range</div>
+            <div class="stat-value text-base text-green-600">Near</div>
+            <div class="stat-desc text-xs">GPS-based</div>
+          </div>
+          <div class="stat place-items-center py-4 px-3">
+            <div class="stat-figure text-green-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div class="stat-title text-xs text-gray-400">Chat</div>
+            <div class="stat-value text-base text-green-600">⚡Fast</div>
+            <div class="stat-desc text-xs">Real-time</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Chat Simulator Column (Col Span 5) -->
+      <div class="lg:col-span-5 hidden lg:block">
+        <div class="border border-gray-150 shadow-2xl rounded-[32px] bg-white overflow-hidden max-w-sm mx-auto relative z-10">
+          <!-- Mock Phone Header -->
+          <div class="bg-gray-50 border-b border-gray-100 px-4 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="relative">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-green-500 to-emerald-400 flex items-center justify-center text-white font-extrabold text-xs shadow-inner">
+                  LA
+                </div>
+                <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full pulse-online"></span>
+              </div>
+              <div>
+                <p class="text-xs font-extrabold text-gray-900 leading-none">Leo Andres</p>
+                <p class="text-[10px] text-green-600 font-semibold mt-0.5">300m away · Active</p>
+              </div>
+            </div>
+            <div class="flex gap-1 text-gray-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+            </div>
+          </div>
+
+          <!-- Phone Chat Body -->
+          <div id="chatWidgetBody" class="flex flex-col gap-3 p-4 h-[300px] overflow-y-auto bg-gray-50/40">
+            <!-- Simulated messages will be injected here -->
+          </div>
+
+          <!-- Phone Input Block -->
+          <div class="bg-white border-t border-gray-100 p-3 flex items-center gap-2">
+            <div class="flex-1 bg-gray-50 border border-gray-150 rounded-full px-4 py-2 text-xs text-gray-400 select-none">
+              Say hello...
+            </div>
+            <div class="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white shadow-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9-7-9-7v14z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
 
 
-<!-- 🔹 MAIN -->
-<main class=" h-screen flex-grow flex items-center justify-center   ">
-  <div class=" rounded-3xl  w-full max-w-sm md:max-w-md p-6 md:p-8 text-center">
+  <!-- ══ STORY / CHAT BUBBLES ══ -->
+  <section class="py-20 px-4 relative">
+    <div class="max-w-xl mx-auto">
 
-    <img
-      src="/assets/NearbyShareLogo.svg"
-      class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4"
-    />
+      <div class="text-center mb-12 reveal">
+        <span class="badge badge-success badge-outline font-bold uppercase tracking-wider mb-2">Our Story</span>
+        <!-- <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-2">
+          What is <span class="">NearbyFriends</span>?
+        </h2> -->
+        <!-- <p class="text-gray-400 mt-2 text-sm">The app born from a simple human truth.</p> -->
+      </div>
 
-    <h2 class="text-xl md:text-2xl font-bold">      
-      Hello,
-      <span id="userLoggedStatus" class="text-pink-600"></span>
-    </h2>
+      <!-- Smartphone mockup container for story chat -->
+      <div class="border border-gray-150 shadow-2xl rounded-[32px] bg-white overflow-hidden max-w-sm mx-auto relative z-10">
+        <!-- Mock Phone Header -->
+        <div class="bg-gray-50 border-b border-gray-100 px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-green-500 to-emerald-400 flex items-center justify-center text-white font-extrabold text-xs">
+              NF
+            </div>
+            <div>
+              <p class="text-xs font-bold text-gray-900 leading-none">NearbyFriends Space</p>
+              <p class="text-[10px] text-green-500 font-semibold mt-0.5 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                Active Room
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 text-gray-400">
+            <span class="text-xs font-semibold">Local Story</span>
+          </div>
+        </div>
 
-    <p class="text-gray-500 mt-2 text-sm md:text-base">
-      Make friends who are online around you
-    </p>
+        <!-- Phone Chat Body -->
+        <div id="storyBubbles" class="flex flex-col gap-4 p-5 h-[360px] overflow-y-auto bg-gray-50/50">
+          
+          <div class="chat chat-start opacity-0 translate-y-4 transition-all duration-700">
+            <div class="chat-image avatar">
+              <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600"></div>
+            </div>
+            <div class="chat-bubble bg-white text-gray-800 border border-gray-100 text-sm font-semibold shadow-sm leading-relaxed">
+              Hey! Ever noticed how many people are around you… but no one really talks anymore? 🤔
+            </div>
+          </div>
 
-    <div class="mt-6 flex flex-col gap-3 md:gap-4">
-      <a href="./features/DiscoverFriends/discover.html">
-        <button class="shadow shadow-black btn w-full rounded-full bg-green-500 hover:bg-green-300 text-black  hover:borde hover:border-black">
-          Discover Friends  
-        </button>
+          <div class="chat chat-end opacity-0 translate-y-4 transition-all duration-700">
+            <div class="chat-image avatar">
+              <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-xs font-bold text-white"></div>
+            </div>
+            <div class="chat-bubble bg-green-600 text-white text-sm font-semibold shadow-sm leading-relaxed">
+              Yeah. We felt the same — so we built something to change that.
+            </div>
+          </div>
+
+          <div class="chat chat-start opacity-0 translate-y-4 transition-all duration-700">
+            <div class="chat-image avatar">
+              <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600"></div>
+            </div>
+            <div class="chat-bubble bg-white text-gray-800 border border-gray-100 text-sm font-semibold shadow-sm leading-relaxed">
+              No filters. No endless swipes. Just real people — nearby, online, ready to chat.
+            </div>
+          </div>
+
+          <div class="chat chat-end opacity-0 translate-y-4 transition-all duration-700">
+            <div class="chat-image avatar">
+              <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-xs font-bold text-white"></div>
+            </div>
+            <div class="chat-bubble bg-green-600 text-white text-sm font-semibold shadow-sm leading-relaxed">
+              Open the app, see who's around, say hello. Simple, genuine, human.
+            </div>
+          </div>
+
+          <div class="chat chat-start opacity-0 translate-y-4 transition-all duration-700">
+            <div class="chat-image avatar">
+              <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600"></div>
+            </div>
+            <div class="chat-bubble bg-white text-gray-800 border border-gray-100 text-sm font-semibold shadow-sm leading-relaxed">
+              Because the right connection isn't miles away — it's right next to you. 💚
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div id="cta" class="text-center mt-12 opacity-0 transition-all duration-700">
+        <a href="/features/DiscoverFriends/discover.html">
+          <button class="btn btn-outline border-2 border-black btn-lg rounded-full px-10 font-bold gap-2 ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Try for Free
+          </button>
+        </a>
+        <p class="text-gray-400 text-sm mt-3 font-medium">Your next chat might be just around the corner</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══ FEATURES ══ -->
+  <!-- <section class="py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-12 reveal">
+        <span class="badge badge-success badge-outline font-bold uppercase tracking-wider mb-4">⚡ Features</span>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-2">
+          Everything to <span class="grad-text">connect</span>
+        </h2>
+        <p class="text-gray-400 mt-2 text-sm max-w-sm mx-auto">Built for real humans, in real places, in real time.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card bg-white border border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl rounded-2xl feat-card reveal transition-all duration-300">
+          <div class="card-body gap-3 p-6">
+            <div class="w-11 h-11 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="card-title text-gray-900 text-base font-extrabold">Location Aware</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">See people physically near you who are online right now.</p>
+            <div class="card-actions"><div class="badge badge-success badge-outline text-xs font-semibold">GPS-based</div></div>
+          </div>
+        </div>
+
+        <div class="card bg-white border border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl rounded-2xl feat-card reveal transition-all duration-300" style="transition-delay:.07s">
+          <div class="card-body gap-3 p-6">
+            <div class="w-11 h-11 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="card-title text-gray-900 text-base font-extrabold">Real-time Chat</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Instant messages with zero delay — powered by WebSockets.</p>
+            <div class="card-actions"><div class="badge badge-success badge-outline text-xs font-semibold">WebSocket</div></div>
+          </div>
+        </div>
+
+        <div class="card bg-white border border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl rounded-2xl feat-card reveal transition-all duration-300" style="transition-delay:.14s">
+          <div class="card-body gap-3 p-6">
+            <div class="w-11 h-11 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="card-title text-gray-900 text-base font-extrabold">Safe & Private</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Your data stays yours. We only share what you choose.</p>
+            <div class="card-actions"><div class="badge badge-success badge-outline text-xs font-semibold">Encrypted</div></div>
+          </div>
+        </div>
+
+        <div class="card bg-white border border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl rounded-2xl feat-card reveal transition-all duration-300" style="transition-delay:.04s">
+          <div class="card-body gap-3 p-6">
+            <div class="w-11 h-11 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="card-title text-gray-900 text-base font-extrabold">Genuine People</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">No bots, no fakes. Just real humans near you.</p>
+            <div class="card-actions"><div class="badge badge-success badge-outline text-xs font-semibold">Verified</div></div>
+          </div>
+        </div>
+
+        <div class="card bg-white border border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl rounded-2xl feat-card reveal transition-all duration-300" style="transition-delay:.11s">
+          <div class="card-body gap-3 p-6">
+            <div class="w-11 h-11 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <h3 class="card-title text-gray-900 text-base font-extrabold">No App Needed</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Works in your browser — nothing to install.</p>
+            <div class="card-actions"><div class="badge badge-success badge-outline text-xs font-semibold">PWA Ready</div></div>
+          </div>
+        </div>
+
+        <div class="card bg-white border border-gray-100 hover:border-green-300 shadow-sm hover:shadow-xl rounded-2xl feat-card reveal transition-all duration-300" style="transition-delay:.18s">
+          <div class="card-body gap-3 p-6">
+            <div class="w-11 h-11 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M12 16V5" />
+              </svg>
+            </div>
+            <h3 class="card-title text-gray-900 text-base font-extrabold">Always Free</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Core features free forever. Connect without limits.</p>
+            <div class="card-actions"><div class="badge badge-success badge-outline text-xs font-semibold">Free Forever</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section> -->
+
+
+<footer class="bg-white border-t border-gray-100 mt-4 relative z-10"  >
+  <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+    <!-- Left Side -->
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8">
+        <img src="/assets/NearbyShareLogo.svg" alt="NearbyFriends" />
+      </div>
+
+      <span class="skeleton px-2.5 font-extrabold text-gray-800">
+        <span class="text-green-600">Nearby</span>Friends
+      </span>
+    </div>
+
+    <!-- Right Side -->
+    <div class="flex items-center gap-1 text-sm text-gray-400 font-medium text-center sm:text-right">
+      <span>© 2026 NearbyFriends · From</span>
+
+      <a
+        href="https://soraalpha.tech/"
+        target="_blank"
+        class="badge badge-success text-white font-semibold hover:opacity-80 transition-opacity"
+      >
+        SoraAlpha
       </a>
-
-      <a href="/features/chat/recentChats.html">
-        <button class="btn w-full rounded-full btn-outline hover:bg-green-50 hover:text-black">
-          Recent Chats
-        </button>
-      </a>
     </div>
 
   </div>
-</main>  
-
-
-<!-- Story Telling -->
-<section class="min-h-screen flex flex-col items-center justify-center  px-4 pb-24 font-sans">
-  <div class="max-w-2xl w-full space-y-10">
-
-    <h2 class="text-center  rounded-xl font-extrabold mb-8  tracking-tight drop-shadow-lg">
-       <span class="  border rounded-xl text-xl lg:text-4xl px-2 lg:px-5  shadow-md " >What is <span class="text-green-600">Nearby</span>Friends ?</span>
-    </h2>
-
-    <!-- Chat Bubbles -->
-    <div id="storyBubbles" class="flex flex-col space-y-5">
-
-      <div class="font-semibold self-start border border-gray-500 text-gray-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
-        <p>Hey! Ever noticed how many people are around you... but no one really talks anymore?</p>
-      </div>
-
-      <div class="self-end  bg-green-500 text-black rounded-2xl rounded-tr-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
-        <p>Yeah. We felt the same — so we built something to change that.</p>
-      </div>
-
-      <div class="font-semibold self-start border border-gray-500  text-gray-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
-        <p>No filters. No endless swipes. Just real people — nearby, online, and ready to chat.</p>
-      </div>
-
-      <div class=" self-end bg-green-500 text-black rounded-2xl rounded-tr-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
-        <p>Open the app, see who’s around, and say hello. Simple, genuine, human.</p>
-      </div>
-
-      <div class="font-semibold self-start border border-gray-500 text-gray-800 rounded-2xl rounded-tl-none p-4 max-w-[80%] opacity-0 translate-y-5 shadow-md transition-all duration-700">
-        <p>Because sometimes, the right connection isn’t miles away — it’s right next to you.</p>
-      </div>
-
-    </div>
-
-    <!-- CTA -->
-    <div id="cta" class="text-center mt-12 opacity-1 transition-all duration-700">
-     <a href="/features/DiscoverFriends/discover.html">
-       <button class="btn bg-green-500 hover:bg-green-600 text-black text-lg font-semibold rounded-full px-10   hover:shadow-green-500/40 transition-all duration-300">
-          Try for Free
-       </button>
-     </a>
-
-      <p class="text-gray-800 text-sm lg:text-base mt-4">Your next chat might be just around the corner</p>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- FOOTER -->
-<footer class="rounded-t-3xl border-black bg-white border h-32 flex justify-center items-center text-center text-black text-xs md:text-sm pb-4 ">
- <h2> © 2026 NearbyFriends • A <a href="https://soraalpha.netlify.app/" target="_blank" class="border border-black text-white rounded-xl p-1 bg-green-700" title="Alpha of Software Solution">SoraAlpha</a> Product </h2>
 </footer>
 
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bubbles = document.querySelectorAll("#storyBubbles > div");
+      const cta = document.getElementById("cta");
 
+      bubbles.forEach((bubble, i) => {
+        setTimeout(() => {
+          bubble.classList.remove("opacity-0", "translate-y-4");
+        }, i * 1400);
+      });
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const bubbles = document.querySelectorAll("#storyBubbles > div");
-    const cta = document.getElementById("cta");
-
-    bubbles.forEach((bubble, i) => {
       setTimeout(() => {
-        bubble.classList.remove("opacity-0", "translate-y-5");
-      }, i * 1400);
+        cta.classList.remove("opacity-0");
+      }, bubbles.length * 1400 + 800);
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.14 });
+      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+      // Simulated Chat Widget Logic
+      const chatWidget = document.getElementById("chatWidgetBody");
+      if (chatWidget) {
+        const messages = [
+          { sender: "them", text: "Hey! Are you nearby at the coffee shop?" },
+          { sender: "me", text: "Yeah! Just sitting by the window working." },
+          { sender: "them", text: "Awesome! Mind if I join you? I'm just 300m away." },
+          { sender: "me", text: "Sure, come over! Let's talk." }
+        ];
+        
+        let msgIndex = 0;
+        
+        function appendMessage(sender, text) {
+          const isMe = sender === "me";
+          const bubble = document.createElement("div");
+          bubble.className = `chat ${isMe ? "chat-end" : "chat-start"} opacity-0 transform translate-y-2 transition-all duration-300`;
+          
+          bubble.innerHTML = `
+            <div class="chat-image avatar">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold text-white ${isMe ? "bg-green-600" : "bg-teal-500"}">
+                ${isMe ? "" : ""}
+              </div>
+            </div>
+            <div class="chat-bubble ${isMe ? "bg-green-600 text-white" : "bg-gray-100 text-gray-800"} text-xs font-semibold leading-relaxed shadow-sm">
+              ${text}
+            </div>
+          `;
+          
+          chatWidget.appendChild(bubble);
+          chatWidget.scrollTop = chatWidget.scrollHeight;
+          
+          setTimeout(() => {
+            bubble.classList.remove("opacity-0", "translate-y-2");
+          }, 50);
+        }
+        
+        function runSimulation() {
+          if (msgIndex >= messages.length) {
+            setTimeout(() => {
+              chatWidget.innerHTML = "";
+              msgIndex = 0;
+              runSimulation();
+            }, 6000);
+            return;
+          }
+          
+          const msg = messages[msgIndex];
+          const isThem = msg.sender === "them";
+          
+          if (isThem) {
+            const typingIndicator = document.createElement("div");
+            typingIndicator.id = "typingIndicator";
+            typingIndicator.className = "chat chat-start opacity-0 transition-opacity duration-300";
+            typingIndicator.innerHTML = `
+              <div class="chat-image avatar">
+                <div class="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center text-[10px] font-bold text-white"></div>
+              </div>  
+              <div class="chat-bubble bg-gray-100 text-gray-400 text-xs font-semibold flex items-center gap-1">
+                <span>Leo is typing</span>
+                <span class="loading loading-dots loading-xs"></span>
+              </div>
+            `;
+            chatWidget.appendChild(typingIndicator);
+            chatWidget.scrollTop = chatWidget.scrollHeight;
+            
+            setTimeout(() => {
+              typingIndicator.classList.remove("opacity-0");
+            }, 50);
+            
+            setTimeout(() => {
+              typingIndicator.remove();
+              appendMessage(msg.sender, msg.text);
+              msgIndex++;
+              runSimulation();
+            }, 2500);
+          } else {
+            setTimeout(() => {
+              appendMessage(msg.sender, msg.text);
+              msgIndex++;
+              runSimulation();
+            }, 1800);
+          }
+        }
+        
+        setTimeout(runSimulation, 1000);
+      }
     });
+  </script>
 
-    setTimeout(() => {
-      cta.classList.remove("opacity-0");
-    }, bubbles.length * 1400 + 800);
-  });
-</script>
-
-
-<!-- 🔹 SCRIPTS (UNCHANGED) -->
-<script type="module" src="./server/firebase.js"></script>
-<script type="module" src="./server/auth.js"></script>
-<script type="module" src="./server/index.js"></script>
+  <!-- 🔹 SCRIPTS (UNCHANGED) -->
+  <script type="module" src="./server/firebase.js"></script>
+  <script type="module" src="./server/auth.js"></script>
+  <script type="module" src="./server/index.js"></script>
 
 </body>
 </html>

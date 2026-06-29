@@ -20,7 +20,10 @@ let currentUser = null;
         if(user){
            currentUser = user;
            loadingProfile.style.display = "none";
-           content.classList.add("show");
+           content.classList.remove("hidden");
+           requestAnimationFrame(() => {
+             content.classList.add("scale-100", "opacity-100");
+           });
 
            // reading user for showing to the form..  
               let docRef = doc(db  , "users" , currentUser.uid);
@@ -33,6 +36,7 @@ let currentUser = null;
                    nameInput.value = data.name || "";
                    ageInput.value  = data.age || "";
                    aboutInput.value = data.about || "";
+                   updateInitials();
               }
              
              // mark user as online...
@@ -111,3 +115,19 @@ saveBtn.addEventListener("click" , async ()=>{
         alert("Something went wrong while saving profile..!");
     }
 });
+
+function updateInitials() {
+  const name = nameInput.value.trim();
+  const avatarDiv = document.querySelector("#profileAvatar");
+  if (avatarDiv) {
+    if (name) {
+      const parts = name.split(/\s+/);
+      const initials = parts.map(p => p[0]).join("").substring(0, 2).toUpperCase();
+      avatarDiv.textContent = initials;
+    } else {
+      avatarDiv.textContent = "?";
+    }
+  }
+}
+
+nameInput.addEventListener("input", updateInitials);
